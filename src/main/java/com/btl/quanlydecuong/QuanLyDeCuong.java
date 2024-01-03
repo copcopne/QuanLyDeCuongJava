@@ -14,5 +14,6 @@ public class QuanLyDeCuong {
         System.out.println("Hello World!");
         System.out.println("test");
         System.out.println("123");
+        System.out.println("testttttttt");
     }
 }
