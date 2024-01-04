@@ -7,6 +7,9 @@ public class DanhSachMonHoc {
 
     private List<MonHoc> dsMonHoc = new ArrayList<>();
 
+    public DanhSachMonHoc() {
+    }
+
     public void timKiemMon() {
 
     }

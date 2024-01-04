@@ -8,6 +8,63 @@ public class GiangVien {
     private String trinhDo;
     private DanhSachDeCuong dsDeCuongBienSoan;
     private int soDeCuongBienSoan;
+
+    public String getTenGiangVien() {
+        return tenGiangVien;
+    }
+
+    public void setTenGiangVien(String tenGiangVien) {
+        this.tenGiangVien = tenGiangVien;
+    }
+
+    public String getMaGiangVien() {
+        return maGiangVien;
+    }
+
+    public void setMaGiangVien(String maGiangVien) {
+        this.maGiangVien = maGiangVien;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTrinhDo() {
+        return trinhDo;
+    }
+
+    public void setTrinhDo(String trinhDo) {
+        this.trinhDo = trinhDo;
+    }
+
+    public DanhSachDeCuong getDsDeCuongBienSoan() {
+        return dsDeCuongBienSoan;
+    }
+
+    public void setDsDeCuongBienSoan(DanhSachDeCuong dsDeCuongBienSoan) {
+        this.dsDeCuongBienSoan = dsDeCuongBienSoan;
+    }
+
+    public int getSoDeCuongBienSoan() {
+        return soDeCuongBienSoan;
+    }
+
+    public void setSoDeCuongBienSoan(int soDeCuongBienSoan) {
+        this.soDeCuongBienSoan = soDeCuongBienSoan;
+    }
+
+    public GiangVien(String tenGiangVien, String maGiangVien, String email, String trinhDo, DanhSachDeCuong dsDeCuongBienSoan, int soDeCuongBienSoan) {
+        this.tenGiangVien = tenGiangVien;
+        this.maGiangVien = maGiangVien;
+        this.email = email;
+        this.trinhDo = trinhDo;
+        this.dsDeCuongBienSoan = dsDeCuongBienSoan;
+        this.soDeCuongBienSoan = soDeCuongBienSoan;
+    }
     
     public void taoMonDeCuong() {
 

@@ -92,11 +92,10 @@ public class DeCuongMonHoc extends MonHoc {
     }
 
     public static DeCuongMonHoc getInsance(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
-        if(true) {
-            DeCuongMonHoc dc = new DeCuongMonHoc(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
-            return dc;
+        if(!true) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
+            return null; // không thành công
         }
-        return null; // tao khong thanh cong
+        return new DeCuongMonHoc(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
 
 
