@@ -2,6 +2,6 @@ package com.btl.quanlydecuong;
 
 public class HeDaoTao {
 
-	private He heDaoTao;
+    private He heDaoTao;
 
 }

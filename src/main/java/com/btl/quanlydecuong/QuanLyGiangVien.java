@@ -5,18 +5,18 @@ import java.util.List;
 
 public class QuanLyGiangVien {
 
-	private List<GiangVien> dsGiangVien = new ArrayList<>();
+    private List<GiangVien> dsGiangVien = new ArrayList<>();
+        
+    public void themGiangVien() {
 
-	public void themGiangVien() {
+    }
 
-	}
+    public void xoaGiangVien() {
 
-	public void xoaGiangVien() {
+    }
 
-	}
-
-	public GiangVien timGiangVien(String maGiangVien) {
-		return null;
-	}
+    public GiangVien timGiangVien(String maGiangVien) {
+        return null;
+    }
 
 }

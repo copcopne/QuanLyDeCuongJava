@@ -3,38 +3,122 @@ package com.btl.quanlydecuong;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeCuongMonHoc {
+public class DeCuongMonHoc extends MonHoc {
 
-	private He heDaoTao;
+    private He heDaoTao;    
+    private String noiDungMonHoc;   
+    private String mucTieuMonHoc;   
+    private List<HinhThuc> hinhThucDanhGia = new ArrayList<>(); 
+    private String chuanDauRa;  
+    private GiangVien giangVienBienSoan;    
+    private DanhSachMonHoc monHocTienQuyet; 
+    private DanhSachMonHoc monHocTruoc;
 
-	private String noiDungMonHoc;
+    public He getHeDaoTao() {
+        return heDaoTao;
+    }
 
-	private String mucTieuMonHoc;
+    public void setHeDaoTao(He heDaoTao) {
+        this.heDaoTao = heDaoTao;
+    }
 
-	private List<HinhThuc> hinhThucDanhGia = new ArrayList<>();
+    public String getNoiDungMonHoc() {
+        return noiDungMonHoc;
+    }
 
-	private String[] chuanDauRa;
+    public void setNoiDungMonHoc(String noiDungMonHoc) {
+        this.noiDungMonHoc = noiDungMonHoc;
+    }
 
-	private GiangVien giangVienBienSoan;
+    public String getMucTieuMonHoc() {
+        return mucTieuMonHoc;
+    }
 
-	private DanhSachMonHoc monHocTienQuyet;
+    public void setMucTieuMonHoc(String mucTieuMonHoc) {
+        this.mucTieuMonHoc = mucTieuMonHoc;
+    }
 
-	private DanhSachMonHoc monHocTruoc;
+    public List<HinhThuc> getHinhThucDanhGia() {
+        return hinhThucDanhGia;
+    }
 
-	public void capNhatThongTin() {
+    public void setHinhThucDanhGia(List<HinhThuc> hinhThucDanhGia) {
+        this.hinhThucDanhGia = hinhThucDanhGia;
+    }
 
-	}
+    public String getChuanDauRa() {
+        return chuanDauRa;
+    }
 
-	public void themHinhThuc() {
+    public void setChuanDauRa(String chuanDauRa) {
+        this.chuanDauRa = chuanDauRa;
+    }
 
-	}
+    public GiangVien getGiangVienBienSoan() {
+        return giangVienBienSoan;
+    }
 
-	public void xoaHinhThuc() {
+    public void setGiangVienBienSoan(GiangVien giangVienBienSoan) {
+        this.giangVienBienSoan = giangVienBienSoan;
+    }
 
-	}
+    public DanhSachMonHoc getMonHocTienQuyet() {
+        return monHocTienQuyet;
+    }
 
-	public void xuatDeCuong() {
+    public void setMonHocTienQuyet(DanhSachMonHoc monHocTienQuyet) {
+        this.monHocTienQuyet = monHocTienQuyet;
+    }
 
-	}
+    public DanhSachMonHoc getMonHocTruoc() {
+        return monHocTruoc;
+    }
+
+    public void setMonHocTruoc(DanhSachMonHoc monHocTruoc) {
+        this.monHocTruoc = monHocTruoc;
+    }
+
+    
+    
+    private DeCuongMonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
+        super(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc);
+        this.heDaoTao = heDaoTao;
+        this.noiDungMonHoc = noiDungMonHoc;
+        this.mucTieuMonHoc = mucTieuMonHoc;
+        this.chuanDauRa = chuanDauRa;
+        this.giangVienBienSoan = giangVienBienSoan;
+        this.monHocTienQuyet = monHocTienQuyet;
+        this.monHocTruoc = monHocTruoc;
+    }
+
+    public static DeCuongMonHoc getInsance(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
+        if(true) {
+            DeCuongMonHoc dc = new DeCuongMonHoc(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
+            return dc;
+        }
+        return null; // tao khong thanh cong
+    }
+
+
+    
+    
+    
+
+        
+    public void capNhatThongTin() {
+
+    }
+
+    public void themHinhThuc() {
+
+    }
+
+    public void xoaHinhThuc() {
+
+    }
+
+    public void xuatDeCuong() {
+
+    }
 
 }
