@@ -16,15 +16,17 @@ public class DanhSachDeCuong {
     }
 
     public void sapXepDeCuong() {
-        this.dsDeCuong.sort(Comparator.comparing(dc -> dc.getMon().getSoTinChi()).reversed());
+        
     }
 
     public void thongKeDeCuong() {
 
     }
 
+    //chua test
     public void xuatDanhSach() {
-
+        this.dsDeCuong.forEach(dc->System.out.printf("Giang vien: %s\n%s"
+                ,dc.getGiangVienBienSoan().getTenGiangVien(),dc));
     }
 
 }
