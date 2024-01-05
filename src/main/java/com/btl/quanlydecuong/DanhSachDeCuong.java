@@ -1,6 +1,7 @@
 package com.btl.quanlydecuong;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class DanhSachDeCuong {
@@ -15,7 +16,7 @@ public class DanhSachDeCuong {
     }
 
     public void sapXepDeCuong() {
-
+        this.dsDeCuong.sort(Comparator.comparing(dc -> dc.getMon().getSoTinChi()).reversed());
     }
 
     public void thongKeDeCuong() {
