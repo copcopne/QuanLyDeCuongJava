@@ -3,8 +3,8 @@ package com.btl.quanlydecuong;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeCuongMonHoc extends MonHoc {
-
+public class DeCuongMonHoc {
+    private MonHoc mon;
     private He heDaoTao;    
     private String noiDungMonHoc;   
     private String mucTieuMonHoc;   
@@ -80,8 +80,7 @@ public class DeCuongMonHoc extends MonHoc {
 
     
     
-    private DeCuongMonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
-        super(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc);
+    private DeCuongMonHoc(He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
         this.heDaoTao = heDaoTao;
         this.noiDungMonHoc = noiDungMonHoc;
         this.mucTieuMonHoc = mucTieuMonHoc;
@@ -95,7 +94,7 @@ public class DeCuongMonHoc extends MonHoc {
         if(!true) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
             return null; // không thành công
         }
-        return new DeCuongMonHoc(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
+        return new DeCuongMonHoc(heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
 
 
@@ -118,6 +117,20 @@ public class DeCuongMonHoc extends MonHoc {
 
     public void xuatDeCuong() {
 
+    }
+
+    /**
+     * @return the mon
+     */
+    public MonHoc getMon() {
+        return mon;
+    }
+
+    /**
+     * @param mon the mon to set
+     */
+    public void setMon(MonHoc mon) {
+        this.mon = mon;
     }
 
 }
