@@ -119,5 +119,14 @@ public class DeCuongMonHoc {
     public void xuatDeCuong() {
 
     }
-
+    
+    @Override
+    public String toString()
+    {
+        return "Ten mon: " + this.mon.getTenMonHoc() 
+                + "\nHe dao tao: " + this.heDaoTao 
+                + "\nNoi dung mon hoc: " + this.noiDungMonHoc 
+                + "\nMuc tieu mon hoc: " + this.mucTieuMonHoc
+                + "\nChuan dau ra: " + this.chuanDauRa;
+    }
 }
