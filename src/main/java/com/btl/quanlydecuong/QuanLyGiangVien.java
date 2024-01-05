@@ -1,4 +1,5 @@
 
+import com.btl.quanlydecuong.DeCuongMonHoc;
 import com.btl.quanlydecuong.GiangVien;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +30,9 @@ public class QuanLyGiangVien {
     public GiangVien timGiangVien(String maGiangVien) {
         return this.dsGiangVien.stream().filter(g->g.getMaGiangVien()
                 .equals(maGiangVien)).findFirst().get();
+    }
+    public List<DeCuongMonHoc> deCuongTheoGV(String maGiangVien){
+        timGiangVien(maGiangVien).getDsDeCuongBienSoan().xuatDanhSach();
     }
 
 }
