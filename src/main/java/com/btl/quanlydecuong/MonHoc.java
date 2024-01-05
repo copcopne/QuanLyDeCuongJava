@@ -46,5 +46,10 @@ public abstract class MonHoc {
         this.moTaMonHoc = moTaMonHoc;
     }
 
-    
+    @Override
+    public String toString() {
+        return String.format("Tên môn học: %s\nMã môn học: %s\n Số tín chỉ: %.1f\nMô tả môn học: %s\n"
+                ,tenMonHoc,maMonHoc,soTinChi,moTaMonHoc);
+    }
+
 }
