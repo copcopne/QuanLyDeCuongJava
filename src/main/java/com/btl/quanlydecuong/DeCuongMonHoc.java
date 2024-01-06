@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DeCuongMonHoc {
 
-    private MonHoc mon; 
+    private MonHoc mon;
     private He heDaoTao;
     private String noiDungMonHoc;
     private String mucTieuMonHoc;
@@ -87,7 +87,9 @@ public class DeCuongMonHoc {
         this.monHocTruoc = monHocTruoc;
     }
 
-    private DeCuongMonHoc(MonHoc mon, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
+    private DeCuongMonHoc(MonHoc mon, He heDaoTao, String noiDungMonHoc,
+            String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan,
+            DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
         this.mon = mon;
         this.heDaoTao = heDaoTao;
         this.noiDungMonHoc = noiDungMonHoc;
@@ -98,11 +100,15 @@ public class DeCuongMonHoc {
         this.monHocTruoc = monHocTruoc;
     }
 
-    public static DeCuongMonHoc getInsance(MonHoc mon, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc,GiangVien g) {
-        if (g.getSoDeCuongBienSoan() >= 5 && ) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
+    public static DeCuongMonHoc getInsance(MonHoc mon, He heDaoTao,
+            String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa,
+            GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet,
+            DanhSachMonHoc monHocTruoc, GiangVien g) {
+        if (g.getSoDeCuongBienSoan() >= 5 &&) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
             return null; // không thành công
         }
-        return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
+        return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc,
+                chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
 
     public void capNhatThongTin() {
@@ -120,13 +126,12 @@ public class DeCuongMonHoc {
     public void xuatDeCuong() {
 
     }
-    
+
     @Override
-    public String toString()
-    {
-        return "Ten mon: " + this.mon.getTenMonHoc() 
-                + "\nHe dao tao: " + this.heDaoTao 
-                + "\nNoi dung mon hoc: " + this.noiDungMonHoc 
+    public String toString() {
+        return "Ten mon: " + this.mon.getTenMonHoc()
+                + "\nHe dao tao: " + this.heDaoTao
+                + "\nNoi dung mon hoc: " + this.noiDungMonHoc
                 + "\nMuc tieu mon hoc: " + this.mucTieuMonHoc
                 + "\nChuan dau ra: " + this.chuanDauRa;
     }
