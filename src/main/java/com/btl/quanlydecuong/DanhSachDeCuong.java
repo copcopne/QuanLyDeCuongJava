@@ -1,6 +1,7 @@
 package com.btl.quanlydecuong;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -8,11 +9,32 @@ public class DanhSachDeCuong {
 
     private List<DeCuongMonHoc> dsDeCuong = new ArrayList<>();
 
+    public List<DeCuongMonHoc> getDsDeCuong() {
+        return dsDeCuong;
+    }
+
+    public void setDsDeCuong(List<DeCuongMonHoc> dsDeCuong) {
+        this.dsDeCuong = dsDeCuong;
+    }
+
     public DanhSachDeCuong() {
     }
 
-    public void timKiem() {
-
+    public void themDeCuong(DeCuongMonHoc d) {
+        this.dsDeCuong.add(d);
+    }
+    
+    public void themDecuong(DeCuongMonHoc... d) {
+        this.dsDeCuong.addAll(Arrays.asList(d));
+    }
+    
+    public void xoaDeCuong(DeCuongMonHoc d) {
+        this.dsDeCuong.remove(d);
+    }
+    
+    public DeCuongMonHoc timKiem(String kw) {
+        return this.dsDeCuong.stream().filter(d-> d.getMon().getMaMonHoc()
+                .equals(kw)).findFirst().get();
     }
 
     public void sapXepDeCuong() {

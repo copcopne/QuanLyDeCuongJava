@@ -87,7 +87,8 @@ public class DeCuongMonHoc {
         this.monHocTruoc = monHocTruoc;
     }
 
-    private DeCuongMonHoc(He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
+    private DeCuongMonHoc(MonHoc mon, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
+        this.mon = mon;
         this.heDaoTao = heDaoTao;
         this.noiDungMonHoc = noiDungMonHoc;
         this.mucTieuMonHoc = mucTieuMonHoc;
@@ -97,11 +98,11 @@ public class DeCuongMonHoc {
         this.monHocTruoc = monHocTruoc;
     }
 
-    public static DeCuongMonHoc getInsance(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
-        if (!true) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
+    public static DeCuongMonHoc getInsance(MonHoc mon, He heDaoTao, String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc,GiangVien g) {
+        if (g.getSoDeCuongBienSoan() >= 5 && ) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
             return null; // không thành công
         }
-        return new DeCuongMonHoc(heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
+        return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
 
     public void capNhatThongTin() {

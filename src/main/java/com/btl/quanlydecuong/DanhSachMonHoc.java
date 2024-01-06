@@ -9,6 +9,14 @@ public class DanhSachMonHoc {
 
     private List<MonHoc> dsMonHoc = new ArrayList<>();
 
+    public List<MonHoc> getDsMonHoc() {
+        return dsMonHoc;
+    }
+
+    public void setDsMonHoc(List<MonHoc> dsMonHoc) {
+        this.dsMonHoc = dsMonHoc;
+    }
+
     public DanhSachMonHoc() {
     }
 
@@ -18,6 +26,9 @@ public class DanhSachMonHoc {
 
     public void themMonHoc(MonHoc mh) {
         dsMonHoc.add(mh);
+    }
+    public void xoaMonHoc(MonHoc mh) {
+        dsMonHoc.remove(mh);
     }
 
     //chua test

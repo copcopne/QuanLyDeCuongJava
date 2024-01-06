@@ -11,6 +11,31 @@ public class HeThongQuanLy {
     private List<GiangVien> dsGiangVien = new ArrayList<>();
     private DanhSachDeCuong dsDeCuong;
     private DanhSachMonHoc dsMonHoc;
+
+    public List<GiangVien> getDsGiangVien() {
+        return dsGiangVien;
+    }
+
+    public void setDsGiangVien(List<GiangVien> dsGiangVien) {
+        this.dsGiangVien = dsGiangVien;
+    }
+
+    public DanhSachDeCuong getDsDeCuong() {
+        return dsDeCuong;
+    }
+
+    public void setDsDeCuong(DanhSachDeCuong dsDeCuong) {
+        this.dsDeCuong = dsDeCuong;
+    }
+
+    public DanhSachMonHoc getDsMonHoc() {
+        return dsMonHoc;
+    }
+
+    public void setDsMonHoc(DanhSachMonHoc dsMonHoc) {
+        this.dsMonHoc = dsMonHoc;
+    }
+    
     public HeThongQuanLy() {
     }
         
@@ -38,6 +63,7 @@ public class HeThongQuanLy {
         ds.xuatDanhSach();
         return ds;
     }
-    
-    
+    public boolean isMonDaTonTai(String kw) {
+        return !this.dsMonHoc.timKiemMon(kw).isEmpty();
+    }
 }
