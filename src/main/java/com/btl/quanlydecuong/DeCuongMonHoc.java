@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DeCuongMonHoc {
 
-    private MonHoc mon;
+    private MonHoc mon; 
     private He heDaoTao;
     private String noiDungMonHoc;
     private String mucTieuMonHoc;
