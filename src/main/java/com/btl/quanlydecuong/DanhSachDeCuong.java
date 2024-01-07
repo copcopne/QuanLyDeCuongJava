@@ -2,6 +2,7 @@ package com.btl.quanlydecuong;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class DanhSachDeCuong {
@@ -35,8 +36,8 @@ public class DanhSachDeCuong {
     public void taoDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
             String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan,
             DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc, GiangVien g) {
-        if (g.getSoDeCuongBienSoan() > 5 && ((DanhSachMonHoc.isMonDaTonTai(mon) == true 
-                && this.timKiem(mon.getMaMonHoc()).getHeDaoTao().equals(heDaoTao) == false) 
+        if (g.getSoDeCuongBienSoan() > 5 && ((DanhSachMonHoc.isMonDaTonTai(mon) == true
+                && this.timKiem(mon.getMaMonHoc()).getHeDaoTao().equals(heDaoTao) == false)
                 || (DanhSachMonHoc.isMonDaTonTai(mon) == false))) {
 
         }
@@ -46,8 +47,15 @@ public class DanhSachDeCuong {
         this.dsDeCuong.remove(d);
     }
 
+    //chua test
     public void sapXepDeCuong() {
-
+        this.dsDeCuong.sort((dc1, dc2) -> {
+            int kiemTraTinChi = Double.compare(dc2.getMon().getSoTinChi(), dc1.getMon().getSoTinChi());
+            if (kiemTraTinChi != 0) {
+                return kiemTraTinChi;
+            }
+            return dc1.getMon().getMaMonHoc().compareTo(dc2.getMon().getMaMonHoc());
+        });
     }
 
     public void thongKeDeCuong() {
@@ -57,7 +65,7 @@ public class DanhSachDeCuong {
     //chua test
     public void xuatDanhSach() {
         this.dsDeCuong.forEach(dc -> System.out.printf("Giang vien: %s\n%s",
-                 dc.getGiangVienBienSoan().getTenGiangVien(), dc));
+                dc.getGiangVienBienSoan().getTenGiangVien(), dc));
     }
 
 }
