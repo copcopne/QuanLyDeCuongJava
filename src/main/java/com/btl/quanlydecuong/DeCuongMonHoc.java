@@ -14,6 +14,7 @@ public class DeCuongMonHoc {
     private GiangVien giangVienBienSoan;
     private DanhSachMonHoc monHocTienQuyet;
     private DanhSachMonHoc monHocTruoc;
+    private static double temp;
 
     public MonHoc getMon() {
         return mon;
@@ -107,17 +108,31 @@ public class DeCuongMonHoc {
         return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc,
                 chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
-
+    
     public void capNhatThongTin() {
 
     }
 
-    public void themHinhThuc() {
-
+    public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, double tyTrong) { // chưa xong/chưa đảm bảo chạy đúng :))
+        this.getHinhThucDanhGia().forEach(t -> {
+            temp += t.getTyTrong();
+        });
+        if(temp == 10); // báo lỗi do tổng tỷ trọng đã đủ 100 và quay về
+        boolean check = temp < 10 && temp >= 0 
+                && temp + tyTrong <= 10;
+        temp = 0; // reset lại thành viên temp
+        HinhThuc x = HinhThuc.getInstance(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
+        if(x == null){} // báo lỗi do vượt quá  thành viên hình thức có thể có trong đề cương môn học
+        else this.hinhThucDanhGia.add(x);
+        
     }
 
+    public boolean isDeCuongHopLe() { // chưa xong
+        return true;
+    }
+    
     public void xoaHinhThuc() {
-
+        
     }
 
     public void xuatDeCuong() {
