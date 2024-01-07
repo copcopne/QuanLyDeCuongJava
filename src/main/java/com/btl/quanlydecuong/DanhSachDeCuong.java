@@ -3,7 +3,9 @@ package com.btl.quanlydecuong;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DanhSachDeCuong {
 
@@ -58,8 +60,23 @@ public class DanhSachDeCuong {
         });
     }
 
+    //chua test / chua chac
     public void thongKeDeCuong() {
-
+        Map<Double,Integer> deCuongTheoTinChi = new HashMap<>();
+        //them key va value
+        for(var dc:dsDeCuong)
+        {
+            double soTinChi = dc.getMon().getSoTinChi(); //Dat dc.getMon().getSoTinChi() thanh sotinchi de viet cho gon
+            deCuongTheoTinChi.put(soTinChi,deCuongTheoTinChi.getOrDefault(soTinChi, 0)+1); //them key, value = value cua key hien tai + 1
+        }
+        
+        //xuat ra man hinh
+        System.out.println("Thong ke de cuong theo so tin chi:");
+        //copy code tren google cho khuc nay ;;
+        for (Map.Entry<Double, Integer> entry : deCuongTheoTinChi.entrySet()) {
+            System.out.printf("%.1f tin chi: %d de cuong", entry.getKey(),entry.getValue());
+            
+        }
     }
 
     //chua test
