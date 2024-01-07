@@ -49,9 +49,6 @@ public class HeThongQuanLy {
         this.dsGiangVien.removeIf(g -> g.getTenGiangVien().contains(kw) 
                 || g.getMaGiangVien().equals(kw));
     }
-    public static boolean isMonDaTonTai(MonHoc m) {
-        return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
-    }
     
     public void xoaGiangVien(GiangVien g) {
         this.dsGiangVien.remove(g);
@@ -61,6 +58,7 @@ public class HeThongQuanLy {
         return this.dsGiangVien.stream().filter(g->g.getMaGiangVien()
                 .equals(maGiangVien)).findFirst().get();
     }
+    
     public DanhSachDeCuong deCuongTheoGV(String maGiangVien){
         DanhSachDeCuong ds =  timGiangVien(maGiangVien).getDsDeCuongBienSoan();
         ds.xuatDanhSach();

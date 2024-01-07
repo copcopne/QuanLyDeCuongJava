@@ -35,9 +35,9 @@ public class DanhSachDeCuong {
     public void taoDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
             String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan,
             DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc, GiangVien g) {
-        if (g.getSoDeCuongBienSoan() > 5 && ((HeThongQuanLy.isMonDaTonTai(mon) == true 
+        if (g.getSoDeCuongBienSoan() > 5 && ((DanhSachMonHoc.isMonDaTonTai(mon) == true 
                 && this.timKiem(mon.getMaMonHoc()).getHeDaoTao().equals(heDaoTao) == false) 
-                || (HeThongQuanLy.isMonDaTonTai(mon) == false))) {
+                || (DanhSachMonHoc.isMonDaTonTai(mon) == false))) {
 
         }
     }
