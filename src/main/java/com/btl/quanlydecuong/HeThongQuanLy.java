@@ -1,3 +1,5 @@
+package com.btl.quanlydecuong;
+
 
 import com.btl.quanlydecuong.DanhSachDeCuong;
 import com.btl.quanlydecuong.DanhSachMonHoc;
@@ -12,7 +14,7 @@ public class HeThongQuanLy {
 
     private List<GiangVien> dsGiangVien = new ArrayList<>();
     private DanhSachDeCuong dsDeCuong;
-    private DanhSachMonHoc dsMonHoc;
+    protected static DanhSachMonHoc dsMonHoc;
 
     public List<GiangVien> getDsGiangVien() {
         return dsGiangVien;
@@ -33,10 +35,6 @@ public class HeThongQuanLy {
     public DanhSachMonHoc getDsMonHoc() {
         return dsMonHoc;
     }
-
-    public void setDsMonHoc(DanhSachMonHoc dsMonHoc) {
-        this.dsMonHoc = dsMonHoc;
-    }
     
     public HeThongQuanLy() {
     }
@@ -51,14 +49,10 @@ public class HeThongQuanLy {
         this.dsGiangVien.removeIf(g -> g.getTenGiangVien().contains(kw) 
                 || g.getMaGiangVien().equals(kw));
     }
-
-    public void taoDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc, 
-            String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, 
-            DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc, GiangVien g) {
-        if (g.getSoDeCuongBienSoan() > 5 && ((dsMonHoc.isMonDaTonTai(mon) == true  && dsDeCuong.timKiem(mon.getMaMonHoc()).getHeDaoTao().equals(heDaoTao) == false) || (dsMonHoc.isMonDaTonTai(mon) == false))) {
-            
-        }
+    public static boolean isMonDaTonTai(MonHoc m) {
+        return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
     }
+    
     public void xoaGiangVien(GiangVien g) {
         this.dsGiangVien.remove(g);
     }
