@@ -6,10 +6,7 @@ package com.btl.quanlydecuong;
  */
 public class Run {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println("test");
-        System.out.println("123");
-        System.out.println("testttttttt");
+    public static void main(String[] args) throws Exception {
+        HeThongQuanLy heThongQuanLy = HeThongQuanLy.taoHeThong();
     }
 }

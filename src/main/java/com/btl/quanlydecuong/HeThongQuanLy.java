@@ -9,6 +9,7 @@ public class HeThongQuanLy {
     private List<GiangVien> dsGiangVien = new ArrayList<>();
     private DanhSachDeCuong dsDeCuong;
     protected static DanhSachMonHoc dsMonHoc;
+    private static boolean isCreated = false;
 
     public List<GiangVien> getDsGiangVien() {
         return dsGiangVien;
@@ -30,9 +31,16 @@ public class HeThongQuanLy {
         return dsMonHoc;
     }
     
-    public HeThongQuanLy() {
+    private HeThongQuanLy() {
+        HeThongQuanLy.isCreated = true;
     }
-        
+    public static HeThongQuanLy taoHeThong() throws Exception {
+        if(HeThongQuanLy.isCreated == false) {
+            return new HeThongQuanLy();
+        }
+        else throw new Exception("Da ton tai he thong quan ly");
+    }
+    
     public void themGiangVien(GiangVien... g) {
         this.dsGiangVien.addAll(Arrays.asList(g));
     }

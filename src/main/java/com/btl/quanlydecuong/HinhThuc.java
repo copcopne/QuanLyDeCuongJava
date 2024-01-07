@@ -38,12 +38,12 @@ public class HinhThuc {
         this.tyTrong = tyTrong;
     }
 
-    public static HinhThuc getInstance(DeCuongMonHoc dc, String ppDanhGia,
+    public static HinhThuc taoHinhThuc(DeCuongMonHoc dc, String ppDanhGia,
             String ndDanhGia, double tyTrong, boolean checkIfValid) {
         
-        if(dc.getHinhThucDanhGia().size() < 4 && checkIfValid == true){
-            return new HinhThuc(ppDanhGia,ndDanhGia,tyTrong);
+        if(dc.getHinhThucDanhGia().size() > 4 || checkIfValid == false){
+            return null;
         }
-        return null;
+        return new HinhThuc(ppDanhGia,ndDanhGia,tyTrong);
     }
 }

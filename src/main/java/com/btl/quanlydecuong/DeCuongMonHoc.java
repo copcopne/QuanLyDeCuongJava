@@ -101,10 +101,14 @@ public class DeCuongMonHoc {
         this.monHocTruoc = monHocTruoc;
     }
 
-    public static DeCuongMonHoc getInsance(MonHoc mon, He heDaoTao,
+    public static DeCuongMonHoc taoDeCuong(MonHoc mon, He heDaoTao,
             String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa,
             GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet,
-            DanhSachMonHoc monHocTruoc, GiangVien g) {
+            DanhSachMonHoc monHocTruoc) {
+        if(giangVienBienSoan.getSoDeCuongBienSoan() > 5) {
+            return null;
+        }
+        giangVienBienSoan.setSoDeCuongBienSoan(giangVienBienSoan.getSoDeCuongBienSoan() + 1);
         return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc,
                 chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
@@ -121,7 +125,7 @@ public class DeCuongMonHoc {
         boolean check = temp < 10 && temp >= 0 
                 && temp + tyTrong <= 10;
         temp = 0; // reset lại thành viên temp
-        HinhThuc x = HinhThuc.getInstance(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
+        HinhThuc x = HinhThuc.taoHinhThuc(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
         if(x == null){} // báo lỗi do vượt quá  thành viên hình thức có thể có trong đề cương môn học
         else this.hinhThucDanhGia.add(x);
         

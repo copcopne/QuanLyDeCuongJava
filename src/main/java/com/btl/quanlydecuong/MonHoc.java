@@ -39,11 +39,14 @@ public abstract class MonHoc {
         this.moTaMonHoc = moTaMonHoc;
     }
 
-    public MonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc) {
+    private MonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc) {
         this.maMonHoc = maMonHoc;
         this.tenMonHoc = tenMonHoc;
         this.soTinChi = soTinChi;
         this.moTaMonHoc = moTaMonHoc;
+    }
+    public static MonHoc taoMonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc) {
+        
     }
 
     @Override
