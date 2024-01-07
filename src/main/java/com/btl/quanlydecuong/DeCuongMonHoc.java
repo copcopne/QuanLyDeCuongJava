@@ -104,9 +104,6 @@ public class DeCuongMonHoc {
             String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa,
             GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet,
             DanhSachMonHoc monHocTruoc, GiangVien g) {
-        if (g.getSoDeCuongBienSoan() >= 5 &&) { // thêm điều kiện để giới hạn số đề cương được tạo từ 1 giảng viên
-            return null; // không thành công
-        }
         return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc,
                 chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }

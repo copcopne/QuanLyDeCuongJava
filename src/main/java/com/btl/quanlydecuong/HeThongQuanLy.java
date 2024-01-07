@@ -2,6 +2,8 @@
 import com.btl.quanlydecuong.DanhSachDeCuong;
 import com.btl.quanlydecuong.DanhSachMonHoc;
 import com.btl.quanlydecuong.GiangVien;
+import com.btl.quanlydecuong.He;
+import com.btl.quanlydecuong.MonHoc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +52,13 @@ public class HeThongQuanLy {
                 || g.getMaGiangVien().equals(kw));
     }
 
+    public void taoDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc, 
+            String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan, 
+            DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc, GiangVien g) {
+        if (g.getSoDeCuongBienSoan() > 5 && ((dsMonHoc.isMonDaTonTai(mon) == true  && dsDeCuong.timKiem(mon.getMaMonHoc()).getHeDaoTao().equals(heDaoTao) == false) || (dsMonHoc.isMonDaTonTai(mon) == false))) {
+            
+        }
+    }
     public void xoaGiangVien(GiangVien g) {
         this.dsGiangVien.remove(g);
     }
@@ -62,8 +71,5 @@ public class HeThongQuanLy {
         DanhSachDeCuong ds =  timGiangVien(maGiangVien).getDsDeCuongBienSoan();
         ds.xuatDanhSach();
         return ds;
-    }
-    public boolean isMonDaTonTai(String kw) {
-        return !this.dsMonHoc.timKiemMon(kw).isEmpty();
     }
 }
