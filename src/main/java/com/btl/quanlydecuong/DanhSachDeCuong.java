@@ -34,9 +34,9 @@ public class DanhSachDeCuong {
         this.dsDeCuong.remove(d);
     }
 
-    public DeCuongMonHoc timKiem(String kw) {
+    public DeCuongMonHoc timKiem(String mon,He he) {
         return this.dsDeCuong.stream().filter(d -> d.getMon().getMaMonHoc()
-                .equals(kw)).findFirst().get();
+                .equals(mon)).filter(d->d.getHeDaoTao().equals(he)).findFirst().get();
     }
     public DeCuongMonHoc timKiem(MonHoc h) {
         return this.dsDeCuong.stream().filter(d-> d.getMon() == h).findFirst().get();
