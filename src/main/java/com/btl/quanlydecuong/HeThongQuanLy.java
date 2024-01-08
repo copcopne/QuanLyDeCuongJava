@@ -1,5 +1,7 @@
 package com.btl.quanlydecuong;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,38 +21,48 @@ public class HeThongQuanLy {
         this.dsGiangVien = dsGiangVien;
     }
 
-    private HeThongQuanLy() {
+    private HeThongQuanLy() throws IOException {
         HeThongQuanLy.isCreated = true;
-    }
-    public static HeThongQuanLy taoHeThong() throws Exception {
-        if(HeThongQuanLy.isCreated == false) {
-            return new HeThongQuanLy();
+        File file = new File("monhoc.txt");
+        if (!file.isFile() && !file.createNewFile()) {
+            throw new IOException("Loi khi tao file moi: " + file.getAbsolutePath());
+        } else {
+            //doc file
         }
-        else throw new Exception("Da ton tai he thong quan ly");
     }
-    
+
+    public static HeThongQuanLy taoHeThong() throws Exception {
+        if (HeThongQuanLy.isCreated == false) {
+            return new HeThongQuanLy();
+        } else {
+            throw new Exception("Da ton tai he thong quan ly");
+        }
+    }
+
     public void themGiangVien(GiangVien... g) {
         this.dsGiangVien.addAll(Arrays.asList(g));
     }
+
     public void themGiangVien(GiangVien g) {
         this.dsGiangVien.add(g);
     }
+
     public void xoaGiangVien(String kw) {
-        this.dsGiangVien.removeIf(g -> g.getTenGiangVien().contains(kw) 
+        this.dsGiangVien.removeIf(g -> g.getTenGiangVien().contains(kw)
                 || g.getMaGiangVien().equals(kw));
     }
-    
+
     public void xoaGiangVien(GiangVien g) {
         this.dsGiangVien.remove(g);
     }
-    
+
     public GiangVien timGiangVien(String maGiangVien) {
-        return this.dsGiangVien.stream().filter(g->g.getMaGiangVien()
+        return this.dsGiangVien.stream().filter(g -> g.getMaGiangVien()
                 .equals(maGiangVien)).findFirst().get();
     }
-    
-    public DanhSachDeCuong deCuongTheoGV(String maGiangVien){
-        DanhSachDeCuong ds =  timGiangVien(maGiangVien).getDsDeCuongBienSoan();
+
+    public DanhSachDeCuong deCuongTheoGV(String maGiangVien) {
+        DanhSachDeCuong ds = timGiangVien(maGiangVien).getDsDeCuongBienSoan();
         ds.xuatDanhSach();
         return ds;
     }
