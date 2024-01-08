@@ -39,7 +39,7 @@ public class DanhSachMonHoc {
                 .collect(Collectors.toList());
         return ds;
     }
-    public static boolean isMonDaTonTai(MonHoc m) {
+    public boolean isMonDaTonTai(MonHoc m) {
         return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
     }
 }
