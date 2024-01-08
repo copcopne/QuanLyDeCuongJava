@@ -7,7 +7,7 @@ import java.util.List;
 public class HeThongQuanLy {
 
     private List<GiangVien> dsGiangVien = new ArrayList<>();
-    private DanhSachDeCuong dsDeCuong;
+    protected static DanhSachDeCuong dsDeCuong;
     protected static DanhSachMonHoc dsMonHoc;
     private static boolean isCreated = false;
 
@@ -19,18 +19,6 @@ public class HeThongQuanLy {
         this.dsGiangVien = dsGiangVien;
     }
 
-    public DanhSachDeCuong getDsDeCuong() {
-        return dsDeCuong;
-    }
-
-    public void setDsDeCuong(DanhSachDeCuong dsDeCuong) {
-        this.dsDeCuong = dsDeCuong;
-    }
-
-    public DanhSachMonHoc getDsMonHoc() {
-        return dsMonHoc;
-    }
-    
     private HeThongQuanLy() {
         HeThongQuanLy.isCreated = true;
     }
