@@ -66,8 +66,23 @@ public class GiangVien {
         this.soDeCuongBienSoan = soDeCuongBienSoan;
     }
     
-    public void taoMonDeCuong() {
+    public void taoMonDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
+            String mucTieuMonHoc, String chuanDauRa, DanhSachMonHoc monHocTienQuyet, 
+            DanhSachMonHoc monHocTruoc) { // cần test 
+        
+        if((HeThongQuanLy.dsDeCuong.timKiem(mon) == null)
+                || ((HeThongQuanLy.dsMonHoc.isMonDaTonTai(mon) == true)
+                && (HeThongQuanLy.dsDeCuong.timKiem(mon).getHeDaoTao().equals(heDaoTao) == false))) {
             
-	}
+            CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this, monHocTienQuyet, monHocTruoc);
+            if(CauHinh.DCMonHoc_temp == null) {
+                // lỗi đã tạo quá đề cương cho phép
+            } else {
+                this.setSoDeCuongBienSoan(this.getSoDeCuongBienSoan() + 1);
+                this.dsDeCuongBienSoan.getDsDeCuong().add(CauHinh.DCMonHoc_temp);
+                HeThongQuanLy.dsDeCuong.getDsDeCuong().add(CauHinh.DCMonHoc_temp);
+            }
+        }
+    }
 
 }
