@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class HeThongQuanLy {
 
@@ -23,11 +24,17 @@ public class HeThongQuanLy {
 
     private HeThongQuanLy() throws IOException {
         HeThongQuanLy.isCreated = true;
+        
         File file = new File("monhoc.txt");
         if (!file.isFile() && !file.createNewFile()) {
             throw new IOException("Loi khi tao file moi: " + file.getAbsolutePath());
         } else {
-            //doc file
+            Scanner sc = new Scanner(file);
+            sc.useDelimiter("|");
+            while(sc.hasNextLine())
+            {
+                //chua xong
+            }
         }
     }
 
