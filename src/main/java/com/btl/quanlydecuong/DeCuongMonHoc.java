@@ -108,7 +108,6 @@ public class DeCuongMonHoc {
         if(giangVienBienSoan.getSoDeCuongBienSoan() > 5) {
             return null;
         }
-        giangVienBienSoan.setSoDeCuongBienSoan(giangVienBienSoan.getSoDeCuongBienSoan() + 1);
         return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc,
                 chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
     }
