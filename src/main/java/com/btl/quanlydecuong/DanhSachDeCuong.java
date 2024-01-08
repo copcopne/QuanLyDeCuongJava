@@ -30,25 +30,17 @@ public class DanhSachDeCuong {
         this.dsDeCuong.addAll(Arrays.asList(d));
     }
 
-    public DeCuongMonHoc timKiem(String kw) {
-        return this.dsDeCuong.stream().filter(d -> d.getMon().getMaMonHoc()
-                .equals(kw)).findFirst().get();
-    }
-
-    public void taoDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
-            String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan,
-            DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc, GiangVien g) {
-        if (g.getSoDeCuongBienSoan() > 5 && ((DanhSachMonHoc.isMonDaTonTai(mon) == true
-                && this.timKiem(mon.getMaMonHoc()).getHeDaoTao().equals(heDaoTao) == false)
-                || (DanhSachMonHoc.isMonDaTonTai(mon) == false))) {
-
-        }
-    }
-
     public void xoaDeCuong(DeCuongMonHoc d) {
         this.dsDeCuong.remove(d);
     }
 
+    public DeCuongMonHoc timKiem(String kw) {
+        return this.dsDeCuong.stream().filter(d -> d.getMon().getMaMonHoc()
+                .equals(kw)).findFirst().get();
+    }
+    public DeCuongMonHoc timKiem(MonHoc h) {
+        return this.dsDeCuong.stream().filter(d-> d.getMon() == h).findFirst().get();
+    }
     //chua test
     public void sapXepDeCuong() {
         this.dsDeCuong.sort((dc1, dc2) -> {
