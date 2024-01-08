@@ -39,16 +39,13 @@ public abstract class MonHoc {
         this.moTaMonHoc = moTaMonHoc;
     }
 
-    private MonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc) {
+    public MonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc) {
         this.maMonHoc = maMonHoc;
         this.tenMonHoc = tenMonHoc;
         this.soTinChi = soTinChi;
         this.moTaMonHoc = moTaMonHoc;
     }
-    public static MonHoc taoMonHoc(String maMonHoc, String tenMonHoc, double soTinChi, String moTaMonHoc) {
-        
-    }
-
+    
     @Override
     public String toString() {
         return String.format("Tên môn học: %s\nMã môn học: %s\n Số tín chỉ: %.1f\nMô tả môn học: %s\n"

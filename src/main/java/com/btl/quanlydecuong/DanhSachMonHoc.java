@@ -20,7 +20,7 @@ public class DanhSachMonHoc {
     public DanhSachMonHoc() {
     }
 
-    public DanhSachMonHoc(MonHoc... mh) {
+    public void DanhSachMonHoc(MonHoc... mh) {
         this.dsMonHoc.addAll(Arrays.asList(mh));
     }
 

@@ -74,7 +74,9 @@ public class GiangVien {
                 || ((HeThongQuanLy.dsMonHoc.isMonDaTonTai(mon) == true)
                 && (HeThongQuanLy.dsDeCuong.timKiem(mon).getHeDaoTao().equals(heDaoTao) == false))) {
             
-            CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this, monHocTienQuyet, monHocTruoc);
+            CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao, 
+                    noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this, 
+                    monHocTienQuyet, monHocTruoc);
             if(CauHinh.DCMonHoc_temp == null) {
                 // lỗi đã tạo quá đề cương cho phép
             } else {

@@ -116,6 +116,20 @@ public class DeCuongMonHoc {
 
     }
 
+    public void themMonHocTruoc(MonHoc m) {
+        if(this.monHocTruoc.getDsMonHoc().size() > 3 || this.monHocTruoc.getDsMonHoc().contains(m) == true) {
+            // khong the them mon
+            return;
+        }
+        this.monHocTruoc.getDsMonHoc().add(m);
+    }
+    public void themMonHocTienQuyet(MonHoc m) {
+        if(this.monHocTienQuyet.getDsMonHoc().size() > 3 || this.monHocTienQuyet.getDsMonHoc().contains(m) == true) {
+            // khong the them mon
+            return;
+        }
+        this.monHocTienQuyet.getDsMonHoc().add(m);
+    }
     public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, double tyTrong) { // chưa xong/chưa đảm bảo chạy đúng :))
         this.getHinhThucDanhGia().forEach(t -> {
             temp += t.getTyTrong();
