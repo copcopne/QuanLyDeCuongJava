@@ -14,7 +14,15 @@ public class DeCuongMonHoc {
     private GiangVien giangVienBienSoan;
     private DanhSachMonHoc monHocTienQuyet;
     private DanhSachMonHoc monHocTruoc;
-    private static double temp;
+    private double tyTrongHienTai; // khong hien thi
+
+    public double getTyTrongHienTai() {
+        return tyTrongHienTai;
+    }
+
+    public void setTyTrongHienTai(double tyTrongHienTai) {
+        this.tyTrongHienTai = tyTrongHienTai;
+    }
 
     public MonHoc getMon() {
         return mon;
@@ -125,34 +133,42 @@ public class DeCuongMonHoc {
     }
     public void themMonHocTienQuyet(MonHoc m) {
         if(this.monHocTienQuyet.getDsMonHoc().size() > 3 || this.monHocTienQuyet.getDsMonHoc().contains(m) == true) {
-            // khong the them mon
+            System.out.println("Không thể thêm môn");
             return;
         }
         this.monHocTienQuyet.getDsMonHoc().add(m);
     }
     public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, double tyTrong) { // chưa xong/chưa đảm bảo chạy đúng :))
-        this.getHinhThucDanhGia().forEach(t -> {
-            temp += t.getTyTrong();
-        });
-        if(temp == 10); // báo lỗi do tổng tỷ trọng đã đủ 100 và quay về
-        boolean check = temp < 10 && temp >= 0 
-                && temp + tyTrong <= 10;
-        temp = 0; // reset lại thành viên temp
-        HinhThuc x = HinhThuc.taoHinhThuc(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
-        if(x == null){} // báo lỗi do vượt quá  thành viên hình thức có thể có trong đề cương môn học
-        else this.hinhThucDanhGia.add(x);
+        if(tyTrongHienTai == 10); // báo lỗi do tổng tỷ trọng đã đủ 100 và quay về
+        boolean check = tyTrongHienTai < 10 && tyTrongHienTai >= 0 
+                && tyTrongHienTai + tyTrong <= 10;
+        CauHinh.hinhThuc_temp = HinhThuc.taoHinhThuc(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
+        if(CauHinh.hinhThuc_temp == null){
+            System.err.println("Quá hình thức có thể thêm");
+            if(!this.isDeCuongHopLe()) System.out.println("Đề cương không hợp lệ, vui lòng thực hiện chỉnh sửa hình thức");
+        } // báo lỗi do vượt quá thành viên hình thức có thể có trong đề cương môn học
+        else {
+            this.hinhThucDanhGia.add(CauHinh.hinhThuc_temp);
+            this.tyTrongHienTai+= CauHinh.hinhThuc_temp.getTyTrong();
+        }
         
     }
 
     public boolean isDeCuongHopLe() { // chưa xong
-        return true;
+        return this.tyTrongHienTai == 10;
     }
     
-    public void xoaHinhThuc() {
-        
+    public void xoaHinhThuc(HinhThuc h) {
+        this.hinhThucDanhGia.remove(h);
     }
 
     public void xuatDeCuong() {
+        if(!this.isDeCuongHopLe()) {
+            System.err.println("Đề cương không hợp lệ, vui lòng thực hiện chỉnh sửa hình thức");
+        }
+        else {
+            // xuất đề cương
+        }
 
     }
 
