@@ -6,9 +6,5 @@ public class MonCoSoNganh extends MonHoc {
         super(maMonHoc, tenMonHoc, soTinChi, moTaMonHoc);
     }
 
-    @Override
-    public String toString() {
-        return "Khối kiến thức: Cơ Sở Ngành\n" + super.toString(); 
-    }
     
 }

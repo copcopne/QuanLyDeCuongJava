@@ -48,8 +48,9 @@ public abstract class MonHoc {
     
     @Override
     public String toString() {
-        return String.format("Tên môn học: %s\nMã môn học: %s\n Số tín chỉ: %.1f\nMô tả môn học: %s\n"
-                ,tenMonHoc,maMonHoc,soTinChi,moTaMonHoc);
+        return String.format("Khoi kien thuc: %s\nTen mon hoc: %s\nMa mon hoc: %s\nSo tin chi: %.1f\nMo ta mon hoc: %s\n", 
+                this.getClass().getSimpleName(), tenMonHoc,maMonHoc,
+                soTinChi,moTaMonHoc);
     }
 
 }

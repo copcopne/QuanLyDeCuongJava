@@ -42,4 +42,14 @@ public class DanhSachMonHoc {
     public boolean isMonDaTonTai(MonHoc m) {
         return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
     }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for(var x: this.dsMonHoc) {
+            s += x.toString();
+        }
+        return s;
+    }
+    
 }

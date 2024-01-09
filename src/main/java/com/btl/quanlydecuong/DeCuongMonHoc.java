@@ -121,7 +121,7 @@ public class DeCuongMonHoc {
     }
     
     public void capNhatThongTin() {
-
+        
     }
 
     public void themMonHocTruoc(MonHoc m) {
@@ -133,7 +133,7 @@ public class DeCuongMonHoc {
     }
     public void themMonHocTienQuyet(MonHoc m) {
         if(this.monHocTienQuyet.getDsMonHoc().size() > 3 || this.monHocTienQuyet.getDsMonHoc().contains(m) == true) {
-            System.out.println("Không thể thêm môn");
+            System.err.println("Khong the them mon");
             return;
         }
         this.monHocTienQuyet.getDsMonHoc().add(m);
@@ -144,8 +144,8 @@ public class DeCuongMonHoc {
                 && tyTrongHienTai + tyTrong <= 10;
         CauHinh.hinhThuc_temp = HinhThuc.taoHinhThuc(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
         if(CauHinh.hinhThuc_temp == null){
-            System.err.println("Quá hình thức có thể thêm");
-            if(!this.isDeCuongHopLe()) System.out.println("Đề cương không hợp lệ, vui lòng thực hiện chỉnh sửa hình thức");
+            System.err.println("Qua so luong hinh thuc co the them");
+            if(!this.isDeCuongHopLe()) System.out.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
         } // báo lỗi do vượt quá thành viên hình thức có thể có trong đề cương môn học
         else {
             this.hinhThucDanhGia.add(CauHinh.hinhThuc_temp);
@@ -164,7 +164,7 @@ public class DeCuongMonHoc {
 
     public void xuatDeCuong() {
         if(!this.isDeCuongHopLe()) {
-            System.err.println("Đề cương không hợp lệ, vui lòng thực hiện chỉnh sửa hình thức");
+            System.err.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
         }
         else {
             // xuất đề cương
@@ -174,10 +174,11 @@ public class DeCuongMonHoc {
 
     @Override
     public String toString() {
-        return "Ten mon: " + this.mon.getTenMonHoc()
+        return  this.mon
                 + "\nHe dao tao: " + this.heDaoTao
                 + "\nNoi dung mon hoc: " + this.noiDungMonHoc
                 + "\nMuc tieu mon hoc: " + this.mucTieuMonHoc
                 + "\nChuan dau ra: " + this.chuanDauRa;
+                + "\nCac mon hoc tien quyet" + this.monHocTienQuyet.getDsMonHoc();
     }
 }
