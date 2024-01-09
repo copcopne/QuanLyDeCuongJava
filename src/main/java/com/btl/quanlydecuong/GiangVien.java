@@ -57,13 +57,11 @@ public class GiangVien {
         this.soDeCuongBienSoan = soDeCuongBienSoan;
     }
 
-    public GiangVien(String tenGiangVien, String maGiangVien, String email, String trinhDo, DanhSachDeCuong dsDeCuongBienSoan, int soDeCuongBienSoan) {
+    public GiangVien(String tenGiangVien, String maGiangVien, String email, String trinhDo) {
         this.tenGiangVien = tenGiangVien;
         this.maGiangVien = maGiangVien;
         this.email = email;
         this.trinhDo = trinhDo;
-        this.dsDeCuongBienSoan = dsDeCuongBienSoan;
-        this.soDeCuongBienSoan = soDeCuongBienSoan;
     }
     
     public void taoMonDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
