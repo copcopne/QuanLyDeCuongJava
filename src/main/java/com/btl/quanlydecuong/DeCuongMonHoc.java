@@ -179,6 +179,6 @@ public class DeCuongMonHoc {
                 + "\nNoi dung mon hoc: " + this.noiDungMonHoc
                 + "\nMuc tieu mon hoc: " + this.mucTieuMonHoc
                 + "\nChuan dau ra: " + this.chuanDauRa;
-                + "\nCac mon hoc tien quyet" + this.monHocTienQuyet.getDsMonHoc();
+                //+ "\nCac mon hoc tien quyet" + this.monHocTienQuyet.getDsMonHoc();
     }
 }
