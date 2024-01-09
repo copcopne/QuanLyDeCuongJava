@@ -30,10 +30,17 @@ public class HeThongQuanLy {
             throw new IOException("Loi khi tao file moi: " + file.getAbsolutePath());
         } else {
             Scanner sc = new Scanner(file);
-            sc.useDelimiter("|");
+            sc.useDelimiter("\\|");
             while(sc.hasNextLine())
             {
-                //chua xong
+                String khoi = sc.next();
+                String maMon = sc.next();
+                String tenMon = sc.next();
+                String moTaMon = sc.next();
+                Double soTinChi = sc.nextDouble();
+                
+                
+                sc.nextLine();
             }
         }
     }
