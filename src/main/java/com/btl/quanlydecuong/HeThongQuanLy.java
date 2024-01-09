@@ -38,7 +38,12 @@ public class HeThongQuanLy {
                 String tenMon = sc.next();
                 String moTaMon = sc.next();
                 Double soTinChi = sc.nextDouble();
-                
+                switch(khoi)
+                {
+                    case "CN" -> HeThongQuanLy.dsMonHoc.themMonHoc(new MonChuyenNganh(maMon,tenMon,soTinChi,moTaMon));
+                    case "CS" -> HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSo(maMon,tenMon,soTinChi,moTaMon));
+                    case "CSN" -> HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSoNganh(maMon,tenMon,soTinChi,moTaMon));
+                }
                 
                 sc.nextLine();
             }
