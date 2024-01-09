@@ -5,7 +5,7 @@ public class GiangVien {
     private String tenGiangVien;
     private String maGiangVien;
     private String email;
-    private String trinhDo;
+    private TrinhDo trinhDo;
     private DanhSachDeCuong dsDeCuongBienSoan = new DanhSachDeCuong();
     private int soDeCuongBienSoan;
 
@@ -33,11 +33,11 @@ public class GiangVien {
         this.email = email;
     }
 
-    public String getTrinhDo() {
+    public TrinhDo getTrinhDo() {
         return trinhDo;
     }
 
-    public void setTrinhDo(String trinhDo) {
+    public void setTrinhDo(TrinhDo trinhDo) {
         this.trinhDo = trinhDo;
     }
 
@@ -57,7 +57,7 @@ public class GiangVien {
         this.soDeCuongBienSoan = soDeCuongBienSoan;
     }
 
-    public GiangVien(String tenGiangVien, String maGiangVien, String email, String trinhDo) {
+    public GiangVien(String tenGiangVien, String maGiangVien, String email, TrinhDo trinhDo) {
         this.tenGiangVien = tenGiangVien;
         this.maGiangVien = maGiangVien;
         this.email = email;

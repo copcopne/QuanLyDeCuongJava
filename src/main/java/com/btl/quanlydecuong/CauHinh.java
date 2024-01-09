@@ -9,5 +9,12 @@ public class CauHinh {
 
     public CauHinh() {
     }
-    
+    public static boolean CheckInteger(String input) { 
+        try { 
+            Integer.valueOf(input); 
+            return true;
+        } catch (NumberFormatException e) { 
+            return false;
+        } 
+    } 
 }

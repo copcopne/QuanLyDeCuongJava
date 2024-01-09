@@ -80,7 +80,12 @@ public class HeThongQuanLy {
                         String tenGiangVien = sc1.next();
                         String maGiangVien = sc1.next();
                         String email = sc1.next();
-                        String trinhDo = sc1.next();
+                        String t = sc1.next();
+                        TrinhDo trinhDo = null;
+                        switch(t) {
+                            case"tienSi"-> trinhDo = TrinhDo.thacSi;
+                            case"thacSi"-> trinhDo = TrinhDo.tienSi;
+                        }
                         this.dsGiangVien.add(new GiangVien(tenGiangVien,maGiangVien,email,trinhDo));
                         if (sc1.hasNextLine()) {
                             sc1.nextLine();
