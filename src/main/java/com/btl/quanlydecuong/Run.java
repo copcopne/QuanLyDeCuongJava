@@ -11,5 +11,6 @@ public class Run {
         HeThongQuanLy.dsMonHoc.getDsMonHoc().forEach(c-> {
             System.out.println(c);
         });
+        heThongQuanLy.getDsGiangVien().forEach(gv->System.out.println(gv.getMaGiangVien()));
     }
 }
