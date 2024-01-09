@@ -51,5 +51,13 @@ public class DanhSachMonHoc {
         }
         return s;
     }
+    public String getTenMonTrongDanhSach() {
+        String s = "";
+        for(var x : this.dsMonHoc) {
+            s += String.format(" %s,",x.getTenMonHoc());
+        }
+        s+= ".";
+        return s;
+    }
     
 }

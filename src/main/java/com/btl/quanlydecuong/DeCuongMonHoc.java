@@ -12,15 +12,15 @@ public class DeCuongMonHoc {
     private List<HinhThuc> hinhThucDanhGia = new ArrayList<>();
     private String chuanDauRa;
     private GiangVien giangVienBienSoan;
-    private DanhSachMonHoc monHocTienQuyet;
-    private DanhSachMonHoc monHocTruoc;
-    private double tyTrongHienTai; // khong hien thi
+    private DanhSachMonHoc monHocTienQuyet = new DanhSachMonHoc();
+    private DanhSachMonHoc monHocTruoc = new DanhSachMonHoc();
+    private int tyTrongHienTai; // khong hien thi
 
     public double getTyTrongHienTai() {
         return tyTrongHienTai;
     }
 
-    public void setTyTrongHienTai(double tyTrongHienTai) {
+    public void setTyTrongHienTai(int tyTrongHienTai) {
         this.tyTrongHienTai = tyTrongHienTai;
     }
 
@@ -97,27 +97,23 @@ public class DeCuongMonHoc {
     }
 
     private DeCuongMonHoc(MonHoc mon, He heDaoTao, String noiDungMonHoc,
-            String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan,
-            DanhSachMonHoc monHocTienQuyet, DanhSachMonHoc monHocTruoc) {
+            String mucTieuMonHoc, String chuanDauRa, GiangVien giangVienBienSoan) {
         this.mon = mon;
         this.heDaoTao = heDaoTao;
         this.noiDungMonHoc = noiDungMonHoc;
         this.mucTieuMonHoc = mucTieuMonHoc;
         this.chuanDauRa = chuanDauRa;
         this.giangVienBienSoan = giangVienBienSoan;
-        this.monHocTienQuyet = monHocTienQuyet;
-        this.monHocTruoc = monHocTruoc;
     }
 
     public static DeCuongMonHoc taoDeCuong(MonHoc mon, He heDaoTao,
             String noiDungMonHoc, String mucTieuMonHoc, String chuanDauRa,
-            GiangVien giangVienBienSoan, DanhSachMonHoc monHocTienQuyet,
-            DanhSachMonHoc monHocTruoc) {
+            GiangVien giangVienBienSoan) {
         if(giangVienBienSoan.getSoDeCuongBienSoan() > 5) {
             return null;
         }
         return new DeCuongMonHoc(mon, heDaoTao, noiDungMonHoc, mucTieuMonHoc,
-                chuanDauRa, giangVienBienSoan, monHocTienQuyet, monHocTruoc);
+                chuanDauRa, giangVienBienSoan);
     }
     
     public void capNhatThongTin() {
@@ -138,10 +134,10 @@ public class DeCuongMonHoc {
         }
         this.monHocTienQuyet.getDsMonHoc().add(m);
     }
-    public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, double tyTrong) { // chưa xong/chưa đảm bảo chạy đúng :))
-        if(tyTrongHienTai == 10); // báo lỗi do tổng tỷ trọng đã đủ 100 và quay về
-        boolean check = tyTrongHienTai < 10 && tyTrongHienTai >= 0 
-                && tyTrongHienTai + tyTrong <= 10;
+    public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, int tyTrong) { // chưa xong/chưa đảm bảo chạy đúng :))
+        if(tyTrongHienTai == 100); // báo lỗi do tổng tỷ trọng đã đủ 100 và quay về
+        boolean check = tyTrongHienTai < 100 && tyTrongHienTai >= 0 
+                && tyTrongHienTai + tyTrong <= 100;
         CauHinh.hinhThuc_temp = HinhThuc.taoHinhThuc(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
         if(CauHinh.hinhThuc_temp == null){
             System.err.println("Qua so luong hinh thuc co the them");
@@ -170,5 +166,20 @@ public class DeCuongMonHoc {
             // xuất đề cương
         }
 
+    }
+    public String lietKeHinhThuc() {
+        String s = "";
+        for(var x : this.hinhThucDanhGia) {
+            s+= x;
+        }
+        return s;
+    }
+    @Override
+    public String toString() {
+        return String.format("%s\nHe dao tao: %s\nNoi dung: %s\nMuc tieu: %s\nHinh thuc danh gia:\n==========\n%s\n==========\nChuan dau ra: %s\nGiang vien bien soan: %s\nDanh sach mon tien quyet:%s\nDanh sach mon truoc:%s\n",
+                this.mon,this.heDaoTao,this.noiDungMonHoc,this.mucTieuMonHoc,
+                this.lietKeHinhThuc(),this.chuanDauRa,this.giangVienBienSoan.getTenGiangVien(),
+                this.monHocTienQuyet.getTenMonTrongDanhSach(),
+                this.monHocTruoc.getTenMonTrongDanhSach());
     }
 }

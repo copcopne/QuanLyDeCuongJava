@@ -77,4 +77,15 @@ public class DanhSachDeCuong {
                 dc.getGiangVienBienSoan().getTenGiangVien(), dc));
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        for(var d : this.dsDeCuong) {
+            s += d;
+        }
+        return s;
+    }
+    
+    
+
 }

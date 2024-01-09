@@ -48,7 +48,7 @@ public abstract class MonHoc {
     
     @Override
     public String toString() {
-        return String.format("Khoi kien thuc: %s\nTen mon hoc: %s\nMa mon hoc: %s\nSo tin chi: %.1f\nMo ta mon hoc: %s\n", 
+        return String.format("Khoi kien thuc: %s\nTen mon hoc: %s\nMa mon hoc: %s\nSo tin chi: %.1f\nMo ta mon hoc: %s", 
                 this.getClass().getSimpleName(), tenMonHoc,maMonHoc,
                 soTinChi,moTaMonHoc);
     }

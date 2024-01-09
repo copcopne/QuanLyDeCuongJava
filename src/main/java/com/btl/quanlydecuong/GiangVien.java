@@ -6,7 +6,7 @@ public class GiangVien {
     private String maGiangVien;
     private String email;
     private String trinhDo;
-    private DanhSachDeCuong dsDeCuongBienSoan;
+    private DanhSachDeCuong dsDeCuongBienSoan = new DanhSachDeCuong();
     private int soDeCuongBienSoan;
 
     public String getTenGiangVien() {
@@ -65,16 +65,14 @@ public class GiangVien {
     }
     
     public void taoMonDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
-            String mucTieuMonHoc, String chuanDauRa, DanhSachMonHoc monHocTienQuyet, 
-            DanhSachMonHoc monHocTruoc) { // cần test 
+            String mucTieuMonHoc, String chuanDauRa) { // cần test 
         
         if((HeThongQuanLy.dsDeCuong.timKiem(mon) == null)
                 || ((HeThongQuanLy.dsMonHoc.isMonDaTonTai(mon) == true)
                 && (HeThongQuanLy.dsDeCuong.timKiem(mon).getHeDaoTao().equals(heDaoTao) == false))) {
             
             CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao, 
-                    noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this, 
-                    monHocTienQuyet, monHocTruoc);
+                    noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this);
             if(CauHinh.DCMonHoc_temp == null) {
                 // lỗi đã tạo quá đề cương cho phép
             } else {
@@ -84,5 +82,14 @@ public class GiangVien {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Ten giang vien: %s\nMa giang vien: %s\nEmail: %s\nTrinh do: %s\nDanh sach de cuong da bien soan:\n==========%s\n==========\n", 
+                this.tenGiangVien,this.maGiangVien,this.email,
+                this.trinhDo,this.dsDeCuongBienSoan);
+    }
+    
+    
 
 }
