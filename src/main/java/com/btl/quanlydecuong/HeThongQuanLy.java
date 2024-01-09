@@ -21,7 +21,10 @@ public class HeThongQuanLy {
     public void setDsGiangVien(List<GiangVien> dsGiangVien) {
         this.dsGiangVien = dsGiangVien;
     }
-
+    static {
+        dsDeCuong = new DanhSachDeCuong();
+        dsMonHoc = new DanhSachMonHoc();
+    }
     private HeThongQuanLy() throws IOException {
         HeThongQuanLy.isCreated = true;
         
@@ -44,8 +47,9 @@ public class HeThongQuanLy {
                     case "CS" -> HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSo(maMon,tenMon,soTinChi,moTaMon));
                     case "CSN" -> HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSoNganh(maMon,tenMon,soTinChi,moTaMon));
                 }
-                
-                sc.nextLine();
+                if(sc.hasNextLine()) {
+                    sc.nextLine();
+                }
             }
         }
     }

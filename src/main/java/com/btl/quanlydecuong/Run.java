@@ -8,7 +8,8 @@ public class Run {
 
     public static void main(String[] args) throws Exception {
         HeThongQuanLy heThongQuanLy = HeThongQuanLy.taoHeThong();
-        MonHoc c1 = new MonChuyenNganh("122", "ten", 9999, "mota");
-        System.out.println(c1);
+        HeThongQuanLy.dsMonHoc.getDsMonHoc().forEach(c-> {
+            System.out.println(c);
+        });
     }
 }

@@ -1,0 +1,3 @@
+CSN|ABC123|ABC|dwefwefwerasd|13|
+CN|BCA123|EBD|dwefwefwerasd|14|
+CS|DEF123|EGF|dwefwefwerasd|12|
