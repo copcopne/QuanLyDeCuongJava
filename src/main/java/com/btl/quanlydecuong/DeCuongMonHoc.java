@@ -145,7 +145,7 @@ public class DeCuongMonHoc {
         CauHinh.hinhThuc_temp = HinhThuc.taoHinhThuc(this, phuongPhapDanhGia, noiDungDanhGia, tyTrong, check);
         if(CauHinh.hinhThuc_temp == null){
             System.err.println("Qua so luong hinh thuc co the them");
-            if(!this.isDeCuongHopLe()) System.out.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
+            if(!this.isDeCuongHopLe()) System.err.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
         } // báo lỗi do vượt quá thành viên hình thức có thể có trong đề cương môn học
         else {
             this.hinhThucDanhGia.add(CauHinh.hinhThuc_temp);
@@ -154,7 +154,7 @@ public class DeCuongMonHoc {
         
     }
 
-    public boolean isDeCuongHopLe() { // chưa xong
+    public boolean isDeCuongHopLe() {
         return this.tyTrongHienTai == 10;
     }
     
@@ -170,15 +170,5 @@ public class DeCuongMonHoc {
             // xuất đề cương
         }
 
-    }
-
-    @Override
-    public String toString() {
-        return  this.mon
-                + "\nHe dao tao: " + this.heDaoTao
-                + "\nNoi dung mon hoc: " + this.noiDungMonHoc
-                + "\nMuc tieu mon hoc: " + this.mucTieuMonHoc
-                + "\nChuan dau ra: " + this.chuanDauRa;
-                //+ "\nCac mon hoc tien quyet" + this.monHocTienQuyet.getDsMonHoc();
     }
 }

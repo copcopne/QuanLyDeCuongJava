@@ -82,7 +82,10 @@ public class HeThongQuanLy {
                         String email = sc1.next();
                         String trinhDo = sc1.next();
                         this.dsGiangVien.add(new GiangVien(tenGiangVien,maGiangVien,email,trinhDo));
-                        this.dsGiangVien.forEach(gv->System.out.print(gv.getMaGiangVien()));
+                        this.dsGiangVien.forEach(gv->System.out.println(gv.getMaGiangVien()));
+                        if (sc1.hasNextLine()) {
+                            sc1.nextLine();
+                        }
                     }
                 } catch (IOException ex) {
                     System.err.println("Khong tim thay thong tin cua giang vien " + sub.getFileName());
