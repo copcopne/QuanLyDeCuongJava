@@ -24,7 +24,7 @@ public class DanhSachMonHoc {
         this.dsMonHoc.addAll(Arrays.asList(mh));
     }
     public void themMonHoc(DanhSachMonHoc h) {
-        this.dsMonHoc.addAll(dsMonHoc);
+        this.dsMonHoc.addAll(h.getDsMonHoc());
     }
     
     public void themMonHoc(MonHoc mh) {
