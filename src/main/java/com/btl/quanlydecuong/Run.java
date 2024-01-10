@@ -16,7 +16,6 @@ public class Run {
 
     public static void main(String[] args) throws Exception {
         HeThongQuanLy heThongQuanLy = HeThongQuanLy.taoHeThong();
-        He he;
         int int_temp;
         String choice;
         boolean isLogon;
@@ -63,14 +62,17 @@ public class Run {
                         if (t == null) {
                             System.out.println("Thao tac sai, vui long thao tac lai");
                         } else {
-                            heThongQuanLy.getDsGiangVien().add(new GiangVien(name_t, ma_t, email_t, t));
+                            GiangVien gv_temp = new GiangVien(name_t, ma_t, email_t, t);
+                            gv_temp.luuFileThongTinGV();
+                            heThongQuanLy.getDsGiangVien().add(gv_temp);
+                            
                             System.out.println("Tao giang vien moi thanh cong");
                         }
                     }
                 }
             } else if (!CauHinh.CheckInteger(choice)) {
                 System.out.println("Nhap khong hop le, vui long thao tac lai");
-            } else if (heThongQuanLy.getDsGiangVien().size() < Integer.parseInt(choice) - 1) {
+            } else if (Integer.parseInt(choice) - 1 < 0 && heThongQuanLy.getDsGiangVien().size() < Integer.parseInt(choice) - 1) {
                 System.out.println("Nhap khong hop le, vui long thao tac lai");
             } else {
                 GiangVien gv = heThongQuanLy.getDsGiangVien().get(Integer.parseInt(choice) - 1);
@@ -91,7 +93,7 @@ public class Run {
                     System.out.print(">");
                     choice = CauHinh.SC.nextLine();
                     switch (choice) {
-                        case "1" -> {
+                        case "1" -> { // tao de cuong
                             System.out.print("\nNhap ma mon ban muon tao de cuong: ");
                             final String string_temp = CauHinh.SC.nextLine();
                             isExists = HeThongQuanLy.dsDeCuong.getDsDeCuong().stream()
@@ -143,7 +145,7 @@ public class Run {
                                 gv.taoMonDeCuong(He.values()[int_temp - 1], string_temp);
                             }
                         }
-                        case "2" -> {
+                        case "2" -> { // cap nhat thong tin de cuong
                             if (gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {
                                 System.out.println("Ban chua tao de cuong nao");
                             } else {
@@ -157,7 +159,7 @@ public class Run {
                                 choice = CauHinh.SC.nextLine();
                                 if (!CauHinh.CheckInteger(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
-                                } else if (gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
+                                } else if (Integer.parseInt(choice) - 1 < 0 && gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
                                 } else {
                                     gv.getDsDeCuongBienSoan().getDsDeCuong()
@@ -166,16 +168,51 @@ public class Run {
                                 }
                             }
                         }
-                        case "3" -> {
-                            System.out.println("3");
+                        case "3" -> { // tim kiem mon hoc
+                            System.out.print("Nhap ma mon hoc can tim: ");
+                            s_temp = CauHinh.SC.nextLine();
+                            if (HeThongQuanLy.dsMonHoc.isMonDaTonTai(s_temp)) {
+                                System.out.println(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(s_temp));
+                            } else {
+                                System.out.println("Mon hoc khong ton tai trong he thong");
+                            }
                         }
-                        case "4" -> {
-                            System.out.println("4");
+                        case "4" -> { // xac dinh danh sach mon hoc trc va tien quyet ( can test :)) )
+                            System.out.print("Nhap ma mon hoc: ");
+                            final String s4_temp = CauHinh.SC.nextLine();
+                            if (!HeThongQuanLy.dsMonHoc.isMonDaTonTai(s4_temp)) {
+                                System.out.println("Mon hoc khong ton tai");
+                            } else {
+                                List<DeCuongMonHoc> mhTruoc = HeThongQuanLy.dsDeCuong.getDsDeCuong().stream()
+                                        .filter(dc -> dc.getMonHocTruoc().getDsMonHoc().stream()
+                                        .anyMatch(dc1 -> dc1.getMaMonHoc().equals(s4_temp)))
+                                        .collect(Collectors.toList());
+                                List<DeCuongMonHoc> mhTienQuyet = HeThongQuanLy.dsDeCuong.getDsDeCuong().stream()
+                                        .filter(dc -> dc.getMonHocTruoc().getDsMonHoc().stream()
+                                        .anyMatch(dc1 -> dc1.getMaMonHoc().equals(s4_temp)))
+                                        .collect(Collectors.toList());
+                                if (mhTruoc.isEmpty()) {
+                                    System.out.println("Mon hoc nay khong phai la mon hoc truoc cua mon hoc nao");
+                                } else {
+                                    System.out.println("Danh sach mon hoc truoc: ");
+                                    mhTruoc.forEach(mh -> System.out.printf("%s(%s), ", mh.getMon().getTenMonHoc(), mh.getMon().getMaMonHoc()));
+                                    System.out.println(".");
+                                }
+                                if (mhTienQuyet.isEmpty()) {
+                                    System.out.println("Mon hoc nay khong phai la mon hoc tien quyet cua mon hoc nao");
+                                } else {
+                                    System.out.println("Danh sach mon hoc tien quyet: ");
+                                    mhTienQuyet.forEach(mh -> System.out.printf("%s(%s), ", mh.getMon().getTenMonHoc(), mh.getMon().getMaMonHoc()));
+                                    System.out.println(".");
+                                }
+                            }
                         }
-                        case "5" -> {
-                            System.out.println("5");
+                        case "5" -> { // sap xep de cuong (can test)
+                            HeThongQuanLy.dsDeCuong.sapXepDeCuong();
+                            System.out.println("Sap xep thanh cong!");
+                            HeThongQuanLy.dsDeCuong.xuatDanhSach();
                         }
-                        case "6" -> {
+                        case "6" -> { // tim de cuong do 1 giang vien bien soan
                             System.out.print("Nhap ma giang vien: ");
                             final String s1_temp = CauHinh.SC.nextLine();
                             if (!heThongQuanLy.getDsGiangVien().stream().anyMatch(g -> g.getMaGiangVien().equals(s1_temp))) {
@@ -195,16 +232,36 @@ public class Run {
                                 }
                             }
                         }
-                        case "7" -> {
-                            System.out.println("7");
+                        case "7" -> { // xuat dc hoan chinh
+                            i = 1;
+                            if(gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {System.out.println("Ban khong co de cuong de xuat");}
+                            else {
+                            for(var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
+                                System.out.printf("%d\n", i++);
+                                x.xuatDeCuong();
+                            }
+                            System.out.println("Chon de cuong muon xuat");
+                            choice = CauHinh.SC.nextLine(); 
+                            if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le, vui long thao tac lai");
+                                } else if (Integer.parseInt(choice) - 1 < 0 && gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le, vui long thao tac lai");
+                                } else {
+                                    DeCuongMonHoc dc_temp = gv.getDsDeCuongBienSoan().getDsDeCuong().get(Integer.parseInt(choice) - 1);
+                                    if(!dc_temp.isDeCuongHopLe()) {
+                                        System.out.println("De cuong chua hop le, chua the xuat de cuong");
+                                    } else {
+                                        dc_temp.xuatDeCuong();
+                                    }
+                                }}
                         }
-                        case "8" -> {
+                        case "8" -> { // thong ke de cuong
                             HeThongQuanLy.dsDeCuong.thongKeDeCuong();
                         }
-                        case "0" -> {
+                        case "0" -> { // dang xuat
                             isLogon = false;
                         }
-                        case "e" -> {
+                        case "e" -> { // thoat
                             return;
                         }
                         default -> {

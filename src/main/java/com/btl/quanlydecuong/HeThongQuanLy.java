@@ -195,7 +195,7 @@ public class HeThongQuanLy {
         try {
             Path path = Paths.get("GiangVien\\" + maGV);
             Files.createDirectories(path);
-            filePath = path.resolve("DSDeCuong.txt");
+            filePath = path.resolve(tenFile);
             Files.createFile(filePath);
         } catch (FileAlreadyExistsException ignored) {}
         finally{

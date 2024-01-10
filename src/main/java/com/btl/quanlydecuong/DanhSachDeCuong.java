@@ -73,7 +73,7 @@ public class DanhSachDeCuong {
 
     //chua test
     public void xuatDanhSach() {
-        this.dsDeCuong.forEach(dc -> System.out.printf("Giang vien: %s\n%s",
+        this.dsDeCuong.forEach(dc -> System.out.printf("%s",
                 dc.getGiangVienBienSoan().getTenGiangVien(), dc));
     }
 

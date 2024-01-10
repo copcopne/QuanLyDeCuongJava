@@ -97,7 +97,7 @@ public class GiangVien {
         System.out.print("Nhap chuan dau ra mon hoc: ");
         String cdr = CauHinh.SC.nextLine();
         this.taoMonDeCuong(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMon), he, nd, mt, cdr);
-
+        
     }
 
     @Override
