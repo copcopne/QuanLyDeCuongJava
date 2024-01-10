@@ -23,13 +23,18 @@ public class DanhSachMonHoc {
     public void themMonHoc(MonHoc... mh) {
         this.dsMonHoc.addAll(Arrays.asList(mh));
     }
-
+    public void themMonHoc(DanhSachMonHoc h) {
+        this.dsMonHoc.addAll(dsMonHoc);
+    }
+    
     public void themMonHoc(MonHoc mh) {
         this.dsMonHoc.add(mh);
     }
+    
     public void themMonHoc(List<MonHoc> mh) {
         this.dsMonHoc.addAll(mh);
     }
+    
     public void xoaMonHoc(MonHoc mh) {
         dsMonHoc.remove(mh);
     }
