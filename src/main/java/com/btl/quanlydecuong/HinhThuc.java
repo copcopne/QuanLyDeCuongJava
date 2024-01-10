@@ -22,7 +22,7 @@ public class HinhThuc {
         this.noiDungDanhGia = noiDungDanhGia;
     }
 
-    public double getTyTrong() {
+    public int getTyTrong() {
         return tyTrong;
     }
 
