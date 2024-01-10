@@ -1,6 +1,7 @@
 package com.btl.quanlydecuong;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -37,7 +38,7 @@ public class HeThongQuanLy {
         HeThongQuanLy.isCreated = true;
 
         //Đọc danh sách môn
-        File file = new File("monhoc.txt");
+        File file = new File("MonHoc.txt");
         if (!file.isFile() && !file.createNewFile()) {
             throw new Exception("Loi khi tao file moi: " + file.getAbsolutePath());
         }
@@ -50,11 +51,11 @@ public class HeThongQuanLy {
             String moTaMon = sc.next();
             Double soTinChi = sc.nextDouble();
             switch (khoi) {
-                case "CN" ->
+                case "MonChuyenNganh" ->
                     HeThongQuanLy.dsMonHoc.themMonHoc(new MonChuyenNganh(maMon, tenMon, soTinChi, moTaMon));
-                case "CS" ->
+                case "MonCoSo" ->
                     HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSo(maMon, tenMon, soTinChi, moTaMon));
-                case "CSN" ->
+                case "MonCoSoNganh" ->
                     HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSoNganh(maMon, tenMon, soTinChi, moTaMon));
             }
         }
@@ -200,6 +201,28 @@ public class HeThongQuanLy {
         finally{
             return filePath;
         }
+    }
+    public void luuFileMonHoc()
+    {
+        Path pathMonHoc = Paths.get("MonHoc.txt");
+        try{
+            Files.createFile(pathMonHoc);
+        } catch (FileAlreadyExistsException ignored) {}
+        catch (IOException ex){System.err.print(ex);}
+        StringBuilder str = new StringBuilder();
+        HeThongQuanLy.dsMonHoc.getDsMonHoc().forEach(monHoc->{
+            str.append(monHoc.getClass().getSimpleName()).append("|")
+                    .append(monHoc.getMaMonHoc()).append("|")
+                    .append(monHoc.getTenMonHoc()).append("|")
+                    .append(monHoc.getMaMonHoc()).append("|")
+                    .append(monHoc.getSoTinChi()).append("|\n");
+        });
+        try(FileWriter fw = new FileWriter(pathMonHoc.toFile(),false)) {
+            fw.write(str.toString());
+        } catch (IOException ex) {
+            System.err.print(ex);
+        }
+
     }
     
 }
