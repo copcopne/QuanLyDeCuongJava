@@ -35,12 +35,12 @@ public class DanhSachMonHoc {
     }
 
     //chua test
-    public List<MonHoc> timKiemMon(String keyword) {
+    public DanhSachMonHoc timKiemMon(String keyword) {
         List<MonHoc> ds = this.dsMonHoc.stream()
                 .filter(m -> m.getTenMonHoc().equals(keyword) 
                         || m.getMaMonHoc().equals(keyword))
                 .collect(Collectors.toList());
-        return ds;
+        return (DanhSachMonHoc) ds;
     }
     public boolean isMonDaTonTai(MonHoc m) {
         return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
