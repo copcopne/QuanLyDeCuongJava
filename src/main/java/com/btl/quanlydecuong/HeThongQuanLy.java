@@ -144,7 +144,7 @@ public class HeThongQuanLy {
     }
 
     private DanhSachMonHoc stringMaMonThanhMonHoc(String str) {
-        DanhSachMonHoc dsMon = null;
+        DanhSachMonHoc dsMon = new DanhSachMonHoc();
         Scanner sc = new Scanner(str);
         while (sc.hasNext()) {
             String maMH = sc.next();
@@ -190,7 +190,7 @@ public class HeThongQuanLy {
     }
     public static Path layFile(String tenFile)
     {
-         Path filePath = null;
+        Path filePath = null;
         try {
             Path path = Paths.get("GiangVien");
             Files.createDirectories(path);
