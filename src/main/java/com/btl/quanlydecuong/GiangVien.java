@@ -1,5 +1,11 @@
 package com.btl.quanlydecuong;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class GiangVien {
 
     private String tenGiangVien;
@@ -63,17 +69,17 @@ public class GiangVien {
         this.email = email;
         this.trinhDo = trinhDo;
     }
-    
+
     public void taoMonDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
             String mucTieuMonHoc, String chuanDauRa) { // cần test 
-        
-        if((HeThongQuanLy.dsDeCuong.timKiem(mon) == null)
+
+        if ((HeThongQuanLy.dsDeCuong.timKiem(mon) == null)
                 || ((HeThongQuanLy.dsMonHoc.isMonDaTonTai(mon) == true)
                 && (HeThongQuanLy.dsDeCuong.timKiem(mon).getHeDaoTao().equals(heDaoTao) == false))) {
-            
-            CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao, 
+
+            CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao,
                     noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this);
-            if(CauHinh.DCMonHoc_temp == null) {
+            if (CauHinh.DCMonHoc_temp == null) {
                 // lỗi đã tạo quá đề cương cho phép
             } else {
                 this.setSoDeCuongBienSoan(this.getSoDeCuongBienSoan() + 1);
@@ -82,6 +88,7 @@ public class GiangVien {
             }
         }
     }
+
     public void taoMonDeCuong(He he, String maMon) {
         System.out.print("Nhap noi dung mon hoc: ");
         String nd = CauHinh.SC.nextLine();
@@ -90,16 +97,53 @@ public class GiangVien {
         System.out.print("Nhap chuan dau ra mon hoc: ");
         String cdr = CauHinh.SC.nextLine();
         this.taoMonDeCuong(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMon), he, nd, mt, cdr);
-        
+
     }
 
     @Override
     public String toString() {
-        return String.format("Ten giang vien: %s\nMa giang vien: %s\nEmail: %s\nTrinh do: %s\nDanh sach de cuong da bien soan:\n==========%s\n==========\n", 
-                this.tenGiangVien,this.maGiangVien,this.email,
-                this.trinhDo,this.dsDeCuongBienSoan);
+        return String.format("Ten giang vien: %s\nMa giang vien: %s\nEmail: %s\nTrinh do: %s\nDanh sach de cuong da bien soan:\n==========%s\n==========\n",
+                this.tenGiangVien, this.maGiangVien, this.email,
+                this.trinhDo, this.dsDeCuongBienSoan);
     }
-    
-    
+
+    public void luuFileDeCuong() {
+        Path pathDeCuong = HeThongQuanLy.layFile("DSDeCuong.txt", this.maGiangVien);
+        StringBuilder str = new StringBuilder();
+        this.dsDeCuongBienSoan.getDsDeCuong().forEach(dc -> {
+            
+            str.append(dc.getMon().getMaMonHoc()).append("|");
+            switch (dc.getHeDaoTao()) {
+                case chinhQuy ->
+                    str.append("CQ|");
+                case lienThong ->
+                    str.append("LT");
+            }
+            str.append(dc.getNoiDungMonHoc()).append("|")
+                    .append(dc.getMucTieuMonHoc()).append("|\n");
+            
+            dc.getHinhThucDanhGia().forEach(ht -> {
+                str.append(ht.getPhuongPhapDanhGia()).append(",")
+                        .append(ht.getNoiDungDanhGia()).append(",")
+                        .append(ht.getTyTrong()).append(",\n");
+            });
+            
+            str.append("|").append(dc.getChuanDauRa()).append("|")
+                    .append(dc.getGiangVienBienSoan().getMaGiangVien()).append("|\n");
+            dc.getMonHocTienQuyet().getDsMonHoc().forEach(monHoc -> {
+                str.append(monHoc.getMaMonHoc()).append(",");
+            });
+            str.append("|\n");
+            dc.getMonHocTruoc().getDsMonHoc().forEach(monHoc->{
+                str.append(monHoc.getMaMonHoc()).append("|");
+            });
+            str.append("|\n\n");
+        });
+        try(FileWriter fw = new FileWriter(pathDeCuong.toFile(),false)) {
+            fw.write(str.toString());
+        } catch (IOException ex) {
+            System.err.print(ex);
+        }
+    }
 
 }
