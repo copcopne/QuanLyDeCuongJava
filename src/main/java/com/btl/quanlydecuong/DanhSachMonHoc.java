@@ -40,12 +40,14 @@ public class DanhSachMonHoc {
     }
 
     //chua test
-    public DanhSachMonHoc timKiemMon(String keyword) {
+    public DanhSachMonHoc timKiemMonBangTen(String keyword) {
         List<MonHoc> ds = this.dsMonHoc.stream()
-                .filter(m -> m.getTenMonHoc().equals(keyword) 
-                        || m.getMaMonHoc().equals(keyword))
+                .filter(m -> m.getTenMonHoc().contains(keyword))
                 .collect(Collectors.toList());
         return (DanhSachMonHoc) ds;
+    }
+    public MonHoc timKiemMonBangMa(String keyword){
+        return this.dsMonHoc.stream().filter(m->m.getMaMonHoc().equals(keyword)).findFirst().get();
     }
     public boolean isMonDaTonTai(MonHoc m) {
         return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
