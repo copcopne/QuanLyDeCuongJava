@@ -183,20 +183,75 @@ public class DeCuongMonHoc {
                         this.themHinhThuc(HinhThuc.taoHinhThuc(this, pp, nd, tt));
 
                     } else {
-                        this.lietKeHinhThuc();
-                        System.out.println("");
-                        //// chua xong ;;
+                        System.out.println("\n1.Them hinh thuc moi\n2.Chinh sua hinh thuc hien co\n3.Xoa hinh thuc hien co");
+                        choice = CauHinh.SC.nextLine();
+                        switch (choice) {
+                            case "1" -> {
+                                if (this.getTyTrongHienTai() <= 100) {
+                                    System.out.print("Nhap phuong phap danh gia: ");
+                                    String pp = CauHinh.SC.nextLine();
+                                    System.out.print("Nhap noi dung danh gia: ");
+                                    String nd = CauHinh.SC.nextLine();
+                                    System.out.print("Nhap ty trong: ");
+                                    int tt = Integer.parseInt(CauHinh.SC.nextLine());
+                                    this.themHinhThuc(HinhThuc.taoHinhThuc(this, pp, nd, tt));
+                                } else {
+                                    System.out.println("Ty trong da day, khong the them hinh thuc moi");
+                                }
+                            }
+                            case "2" -> {
+                                this.lietKeHinhThuc();
+                                System.out.print("Nhap thu tu hinh thuc muon chinh sua: ");
+                                choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le");
+                                } else if (Integer.parseInt(choice) - 1 < 0 && this.getHinhThucDanhGia().size() < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le");
+                                } else {
+                                    System.out.print("Nhap phuong phap danh gia: ");
+                                    String pp = CauHinh.SC.nextLine();
+                                    System.out.print("Nhap noi dung danh gia: ");
+                                    String nd = CauHinh.SC.nextLine();
+                                    System.out.print("Nhap ty trong: ");
+                                    int tt = Integer.parseInt(CauHinh.SC.nextLine());
+                                    if (tt + tyTrongHienTai > 100) {
+                                        System.out.println("Ty trong khop hop le");
+                                    } else {
+                                        this.getHinhThucDanhGia().get(Integer.parseInt(choice) - 1).setNoiDungDanhGia(nd);
+                                        this.getHinhThucDanhGia().get(Integer.parseInt(choice) - 1).setPhuongPhapDanhGia(pp);
+                                        this.getHinhThucDanhGia().get(Integer.parseInt(choice) - 1).setTyTrong(tt);
+                                        this.tyTrongHienTai += tt;
+                                    }
+                                }
+                            }
+                            case "3" -> {
+                                this.lietKeHinhThuc();
+                                System.out.print("Nhap thu tu hinh thuc muon xoa: ");
+                                choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le");
+                                } else if (Integer.parseInt(choice) - 1 < 0 && this.getHinhThucDanhGia().size() < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le");
+                                } else {
+                                    this.tyTrongHienTai -= this.hinhThucDanhGia.get(Integer.parseInt(choice) - 1).getTyTrong();
+                                    this.hinhThucDanhGia.remove(this.hinhThucDanhGia.get(Integer.parseInt(choice) - 1));
+                                }
+                            }
+                            default -> {
+                                System.out.println("Khong hop le");
+                            }
+                        }
                     }
                 }
                 case "3" -> {
                     System.out.println("1.Them mon tien quyet vao de cuong");
                     System.out.println("2.Xoa mon tien quyet khoi de cuong");
                     choice = CauHinh.SC.nextLine();
-                    switch(choice) {
-                        case"1"->{
+                    switch (choice) {
+                        case "1" -> {
                             System.out.print("Nhap ma mon hoc can them: ");
                             s_temp = CauHinh.SC.nextLine();
-                            if(HeThongQuanLy.dsMonHoc.isMonDaTonTai(s_temp)) {
+                            if (HeThongQuanLy.dsMonHoc.isMonDaTonTai(s_temp)) {
                                 this.monHocTienQuyet
                                         .themMonHoc(HeThongQuanLy.dsMonHoc
                                                 .timKiemMonBangMa(s_temp));
@@ -204,20 +259,63 @@ public class DeCuongMonHoc {
                                 System.out.println("Mon hoc khong ton tai");
                             }
                         }
-                        case"2"->{
-                            if(this.getMonHocTienQuyet().getDsMonHoc().isEmpty()) {
+                        case "2" -> {
+                            if (this.getMonHocTienQuyet().getDsMonHoc().isEmpty()) {
                                 System.out.println("De cuong khong co mon tien quyet");
                             } else {
                                 System.out.println(this.getMonHocTienQuyet());
-                                System.out.println("Nhap so thu tu mon can xoa: "); 
+                                System.out.println("Nhap so thu tu mon can xoa: ");
                                 choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le");
+                                } else if (Integer.parseInt(choice) - 1 < 0 && this.getMonHocTienQuyet().getDsMonHoc().size() < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le");
+                                } else {
+                                    this.monHocTienQuyet.getDsMonHoc().remove(this.monHocTienQuyet.getDsMonHoc().get(Integer.parseInt(choice) - 1));
+                                }
                             }
                         }
-                        default->{System.out.println("Khong hop le");}
+                        default -> {
+                            System.out.println("Khong hop le");
+                        }
                     }
                 }
                 case "4" -> {
-
+                    System.out.println("1.Them mon hoc truoc vao de cuong");
+                    System.out.println("2.Xoa mon hoc truoc khoi de cuong");
+                    choice = CauHinh.SC.nextLine();
+                    switch (choice) {
+                        case "1" -> {
+                            System.out.print("Nhap ma mon hoc can them: ");
+                            s_temp = CauHinh.SC.nextLine();
+                            if (HeThongQuanLy.dsMonHoc.isMonDaTonTai(s_temp)) {
+                                this.monHocTienQuyet
+                                        .themMonHoc(HeThongQuanLy.dsMonHoc
+                                                .timKiemMonBangMa(s_temp));
+                            } else {
+                                System.out.println("Mon hoc khong ton tai");
+                            }
+                        }
+                        case "2" -> {
+                            if (this.getMonHocTruoc().getDsMonHoc().isEmpty()) {
+                                System.out.println("De cuong khong co mon tien quyet");
+                            } else {
+                                System.out.println(this.getMonHocTruoc());
+                                System.out.println("Nhap so thu tu mon can xoa: ");
+                                choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le");
+                                } else if (Integer.parseInt(choice) - 1 < 0 && this.getMonHocTruoc().getDsMonHoc().size() < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le");
+                                } else {
+                                    this.monHocTruoc.getDsMonHoc().remove(this.monHocTruoc.getDsMonHoc().get(Integer.parseInt(choice) - 1));
+                                }
+                            }
+                        }
+                        default -> {
+                            System.out.println("Khong hop le");
+                        }
+                    }
                 }
                 case "0" -> {
                     isEditing = false;
@@ -227,7 +325,6 @@ public class DeCuongMonHoc {
                 }
             }
         }
-
     }
 
     public void themMonHocTruoc(MonHoc m) {
