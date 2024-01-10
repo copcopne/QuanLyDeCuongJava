@@ -2,6 +2,7 @@ package com.btl.quanlydecuong;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -187,13 +188,22 @@ public class HeThongQuanLy {
         ds.xuatDanhSach();
         return ds;
     }
-    public static File layFile(String tenFile) throws Exception
+    public static Path layFile(String tenFile)
     {
-        Path path = Paths.get("GiangVien");
-        Files.createDirectories(path);
-        File file = path.resolve(tenFile).toFile();
-        if(!file.isFile()&&!file.createNewFile())
-            throw new Exception("Loi khi doc file: " + file.getAbsolutePath());
-        return file;
+         Path filePath = null;
+        try {
+            Path path = Paths.get("GiangVien");
+            Files.createDirectories(path);
+            filePath = path.resolve("DSDECUONG.txt");
+            Files.createFile(filePath);
+        } catch (FileAlreadyExistsException ignored) {}
+        finally{
+            return filePath;
+        }
+    }
+    public void luuFileDeCuong()
+    {
+        Path pathDeCuong = HeThongQuanLy.layFile("DSDeCuong.txt");
+        
     }
 }
