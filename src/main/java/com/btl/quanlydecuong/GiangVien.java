@@ -112,14 +112,9 @@ public class GiangVien {
         StringBuilder str = new StringBuilder();
         this.dsDeCuongBienSoan.getDsDeCuong().forEach(dc -> {
             
-            str.append(dc.getMon().getMaMonHoc()).append("|");
-            switch (dc.getHeDaoTao()) {
-                case chinhQuy ->
-                    str.append("CQ|");
-                case lienThong ->
-                    str.append("LT");
-            }
-            str.append(dc.getNoiDungMonHoc()).append("|")
+            str.append(dc.getMon().getMaMonHoc()).append("|")
+                    .append(dc.getHeDaoTao() == He.chinhQuy ? "CQ|" : "LT|")
+                    .append(dc.getNoiDungMonHoc()).append("|")
                     .append(dc.getMucTieuMonHoc()).append("|\n");
             
             dc.getHinhThucDanhGia().forEach(ht -> {
@@ -140,6 +135,20 @@ public class GiangVien {
             str.append("|\n\n");
         });
         try(FileWriter fw = new FileWriter(pathDeCuong.toFile(),false)) {
+            fw.write(str.toString());
+        } catch (IOException ex) {
+            System.err.print(ex);
+        }
+    }
+    public void luuFileThongTinGV()
+    {
+        Path pathGV = HeThongQuanLy.layFile("ThongTinGV.txt", this.maGiangVien);
+        StringBuilder str = new StringBuilder();
+        str.append(this.tenGiangVien).append("|")
+                .append(this.maGiangVien).append("|")
+                .append(this.email).append("|")
+                .append(this.trinhDo == TrinhDo.thacSi? "thacSi|":"tienSi|");
+        try(FileWriter fw = new FileWriter(pathGV.toFile(),false)) {
             fw.write(str.toString());
         } catch (IOException ex) {
             System.err.print(ex);
