@@ -188,22 +188,18 @@ public class HeThongQuanLy {
         ds.xuatDanhSach();
         return ds;
     }
-    public static Path layFile(String tenFile)
+    public static Path layFile(String tenFile,String maGV)
     {
         Path filePath = null;
         try {
-            Path path = Paths.get("GiangVien");
+            Path path = Paths.get("GiangVien\\" + maGV);
             Files.createDirectories(path);
-            filePath = path.resolve("DSDECUONG.txt");
+            filePath = path.resolve("DSDeCuong.txt");
             Files.createFile(filePath);
         } catch (FileAlreadyExistsException ignored) {}
         finally{
             return filePath;
         }
     }
-    public void luuFileDeCuong()
-    {
-        Path pathDeCuong = HeThongQuanLy.layFile("DSDeCuong.txt");
-        
-    }
+    
 }
