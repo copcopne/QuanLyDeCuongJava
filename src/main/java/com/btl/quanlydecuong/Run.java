@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Run {
         String choice;
         boolean isLogon;
         boolean isExists;
+        String s_temp;
         while (true) {
             int i = 1;
             System.out.println("Ban la? (Nhap 0 de tao giang vien moi, e de thoat)");
@@ -108,32 +111,60 @@ public class Run {
                                     He a = HeThongQuanLy.dsDeCuong.getDsDeCuong().stream().filter(dc -> dc.getMon().getMaMonHoc().equals(string_temp)).findFirst().get().getHeDaoTao();
                                     System.out.println("Mon nay da co de cuong o he dao tao " + a);
                                     He b = He.chinhQuy;
-                                    if(b.equals(a)) b = He.lienThong;
+                                    if (b.equals(a)) {
+                                        b = He.lienThong;
+                                    }
                                     System.out.println("Tien hanh tao mon voi he dao tao con lai");
-                                    gv.taoMonDeCuong(b,string_temp);
+                                    gv.taoMonDeCuong(b, string_temp);
                                     i = 1;
                                     int y = 0;
-                                    for(var h : EnumSet.allOf(He.class)) {
-                                        if(h.equals(a)) { y = i;break;};
-                                        System.out.printf("%d. %s\n",i,h);
+                                    for (var h : EnumSet.allOf(He.class)) {
+                                        if (h.equals(a)) {
+                                            y = i;
+                                            break;
+                                        }
+                                        System.out.printf("%d. %s\n", i, h);
                                     }
                                     System.out.print("\n>");
                                     int_temp = Integer.parseInt(CauHinh.SC.nextLine());
-                                    if(y == int_temp)System.out.println("Loi");
-                                    else gv.taoMonDeCuong(He.values()[int_temp - 1], string_temp);
+                                    if (y == int_temp) {
+                                        System.out.println("Loi");
+                                    } else {
+                                        gv.taoMonDeCuong(He.values()[int_temp - 1], string_temp);
+                                    }
                                 }
                             } else {
                                 i = 1;
-                                for(var h : EnumSet.allOf(He.class)) {
-                                        System.out.printf("%d. %s\n",i++,h);
-                                    }
+                                for (var h : EnumSet.allOf(He.class)) {
+                                    System.out.printf("%d. %s\n", i++, h);
+                                }
                                 System.out.print("\n>");
                                 int_temp = Integer.parseInt(CauHinh.SC.nextLine());
-                                gv.taoMonDeCuong(He.values()[int_temp - 1],string_temp);
+                                gv.taoMonDeCuong(He.values()[int_temp - 1], string_temp);
                             }
                         }
                         case "2" -> {
-                            System.out.println("2");
+                            if (gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {
+                                System.out.println("Ban chua tao de cuong nao");
+                            } else {
+                                i = 1;
+                                System.out.println("Chon mon can sua:");
+                                for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
+                                    System.out.printf("==%2d==\nMon: %s(%s)\nHe dao tao: %s\n======\n",
+                                            i++, x.getMon().getTenMonHoc(), x.getMon().getMaMonHoc(), x.getHeDaoTao());
+                                }
+                                System.out.print(">");
+                                choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le, vui long thao tac lai");
+                                } else if (gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le, vui long thao tac lai");
+                                } else {
+                                    gv.getDsDeCuongBienSoan().getDsDeCuong()
+                                            .get(Integer.parseInt(choice) - 1)
+                                            .capNhatThongTin();
+                                }
+                            }
                         }
                         case "3" -> {
                             System.out.println("3");
@@ -146,8 +177,23 @@ public class Run {
                         }
                         case "6" -> {
                             System.out.print("Nhap ma giang vien: ");
-                            String s_temp = CauHinh.SC.nextLine();
-                            ////////
+                            final String s1_temp = CauHinh.SC.nextLine();
+                            if (!heThongQuanLy.getDsGiangVien().stream().anyMatch(g -> g.getMaGiangVien().equals(s1_temp))) {
+                                System.out.println("Giang vien khong ton tai!!!");
+                            } else {
+                                GiangVien g_temp = heThongQuanLy.getDsGiangVien().stream().filter(g -> g.getMaGiangVien().equals(s1_temp)).findFirst().get();
+                                List<DeCuongMonHoc> l_temp = HeThongQuanLy.dsDeCuong.getDsDeCuong().stream().filter(dc -> dc.getGiangVienBienSoan().getMaGiangVien().equals(s1_temp)).collect(Collectors.toList());
+                                if (l_temp.isEmpty()) {
+                                    System.out.println("Giang vien nay khong tao de cuong nao");
+                                } else {
+                                    System.out.printf("Danh sach giang vien %s bien soan: \n", g_temp.getTenGiangVien());
+                                    l_temp.forEach(c -> {
+                                        System.out.printf("=====\nMon: %s(%s)\nHe dao tao: %s\n=====\n",
+                                                c.getMon().getTenMonHoc(), c.getMon().getMaMonHoc(),
+                                                c.getHeDaoTao());
+                                    });
+                                }
+                            }
                         }
                         case "7" -> {
                             System.out.println("7");
@@ -161,13 +207,14 @@ public class Run {
                         case "e" -> {
                             return;
                         }
-                        default ->
-                            System.out.printf("Khong hop le, vui long nhap lai");
+                        default -> {
+                            System.out.println("Khong hop le, vui long nhap lai");
+                        }
                     }
+                    CauHinh.pressEnterToContinue();
                 }
-                System.out.println("Tam biet, " + gv.getTenGiangVien());
-                System.out.println("\n");
             }
+            CauHinh.pressEnterToContinue();
         }
 
     }

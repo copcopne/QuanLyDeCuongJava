@@ -39,9 +39,9 @@ public class HinhThuc {
     }
 
     public static HinhThuc taoHinhThuc(DeCuongMonHoc dc, String ppDanhGia,
-            String ndDanhGia, int tyTrong, boolean checkIfValid) {
+            String ndDanhGia, int tyTrong) {
         
-        if(dc.getHinhThucDanhGia().size() > 4 || checkIfValid == false){
+        if(dc.getHinhThucDanhGia().size() > 4){
             return null;
         }
         return new HinhThuc(ppDanhGia,ndDanhGia,tyTrong);
