@@ -149,6 +149,10 @@ public class DeCuongMonHoc {
         }
         
     }
+    public void themHinhThuc(HinhThuc h) {
+        if(tyTrongHienTai == 100 || tyTrongHienTai + h.getTyTrong() > 100) return;
+        this.hinhThucDanhGia.add(h);
+    }
 
     public boolean isDeCuongHopLe() {
         return this.tyTrongHienTai == 10;
