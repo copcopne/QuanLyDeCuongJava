@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,8 +45,8 @@ public class HeThongQuanLy {
             throw new Exception("Loi khi tao file moi: " + file.getAbsolutePath());
         }
         Scanner sc = new Scanner(file);
-        sc.useDelimiter("\\|");
-        while (sc.hasNextLine()) {
+        sc.useDelimiter("\\s*\\|\\s*");
+        while (sc.hasNext()) {
             String khoi = sc.next();
             String maMon = sc.next();
             String tenMon = sc.next();
@@ -59,9 +60,6 @@ public class HeThongQuanLy {
                 case "CSN" ->
                     HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSoNganh(maMon, tenMon, soTinChi, moTaMon));
             }
-            if (sc.hasNextLine()) {
-                sc.nextLine();
-            }
         }
         //Đọc danh sách giảng viên
         File folder = new File("Giangvien");
@@ -70,37 +68,92 @@ public class HeThongQuanLy {
         }
         try (Stream<Path> paths = Files.walk(Paths.get(folder.getAbsolutePath()))) {
             paths.filter(Files::isDirectory).skip(1).forEach(sub -> {
-                //Doc tung subfolder trong folder GiangVien
+                //Đọc từng subfolder của folder GiangVien
 
-                //Doc file ThongTinGV.txt trong subfolder
-                try {
-                    Scanner sc1 = new Scanner(sub.resolve("ThongTinGV.txt"));
-                    sc1.useDelimiter("\\|");
-                    while (sc1.hasNextLine()) {
+                //Đọc file ThongTinGV.txt trong subfolder
+                try (Scanner sc1 = new Scanner(sub.resolve("ThongTinGV.txt"))) {
+                    sc1.useDelimiter("\\s*\\|\\s*");
+                    while (sc1.hasNext()) {
                         String tenGiangVien = sc1.next();
                         String maGiangVien = sc1.next();
                         String email = sc1.next();
                         String t = sc1.next();
                         TrinhDo trinhDo = null;
-                        switch(t) {
-                            case"tienSi"-> trinhDo = TrinhDo.thacSi;
-                            case"thacSi"-> trinhDo = TrinhDo.tienSi;
+                        switch (t) {
+                            case "tienSi" ->
+                                trinhDo = TrinhDo.thacSi;
+                            case "thacSi" ->
+                                trinhDo = TrinhDo.tienSi;
                         }
-                        this.dsGiangVien.add(new GiangVien(tenGiangVien,maGiangVien,email,trinhDo));
-                        if (sc1.hasNextLine()) {
-                            sc1.nextLine();
-                        }
+                        this.dsGiangVien.add(new GiangVien(tenGiangVien, maGiangVien, email, trinhDo));
                     }
-                } catch (IOException ex) {
-                    System.err.println("Khong tim thay thong tin cua giang vien " + sub.getFileName());
+                } catch (IOException | NoSuchElementException ex) {
+                    System.err.println("Khong doc duoc thong tin cua giang vien " + sub.getFileName());
                 }
 
-                
+                //Đọc file DSDeCuong.txt trong subfolder
+                try (Scanner sc2 = new Scanner(sub.resolve("DSDeCuong.txt"))) {
+                    sc2.useDelimiter("\\s*\\|\\s*");
+                    while (sc2.hasNext()) {
+                        String maMon = sc2.next();
+                        String heStr = sc2.next();
+                        String noiDungMon = sc2.next();
+                        String mucTieu = sc2.next();
+                        String hinhThucDanhGia = sc2.next();
+                        String chuanDauRa = sc2.next();
+                        String maGV = sc2.next();
+                        String maMonHocTienQuyet = sc2.next();
+                        String maMonHocTruoc = sc2.next();
+
+                        //xử lý hệ
+                        He he = null;
+                        switch (heStr) {
+                            case "CQ" ->
+                                he = He.chinhQuy;
+                            case "LT" ->
+                                he = He.lienThong;
+                        }
+
+                        //xử lý môn học tiên quyết và môn học 
+                        DanhSachMonHoc dsMonTienQuyet = stringMaMonThanhMonHoc(maMonHocTienQuyet);
+                        DanhSachMonHoc dsMonHocTruoc = stringMaMonThanhMonHoc(maMonHocTruoc);
+
+                        DeCuongMonHoc dc = DeCuongMonHoc.taoDeCuong(
+                                HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMon),
+                                he, noiDungMon, mucTieu, chuanDauRa, this.timGiangVien(maGV));
+                        dc.setMonHocTienQuyet(dsMonTienQuyet);
+                        dc.setMonHocTruoc(dsMonHocTruoc);
+
+                        //xủ lý hình thức đánh giá
+                        Scanner sc3 = new Scanner(hinhThucDanhGia);
+                        sc3.useDelimiter("\\s*,\\s*");
+                        while (sc3.hasNext()) {
+                            String phuongPhapDanhGia = sc3.next();
+                            String noiDung = sc3.next();
+                            int tyTrong = sc3.nextInt();
+                            HinhThuc hinhThuc = HinhThuc.taoHinhThuc(dc, phuongPhapDanhGia, noiDung, tyTrong, isCreated);
+                            dc.themHinhThuc(hinhThuc);
+                        }
+                    }
+                } catch (IOException | NoSuchElementException ex) {
+                    System.err.println("Khong doc duoc thong tin decuong cua giang vien " + sub.getFileName());
+                }
+
             });
         } catch (IOException e) {
             System.out.print(e);
         }
 
+    }
+
+    private DanhSachMonHoc stringMaMonThanhMonHoc(String str) {
+        DanhSachMonHoc dsMon = null;
+        Scanner sc = new Scanner(str);
+        while (sc.hasNext()) {
+            String maMH = sc.next();
+            dsMon.themMonHoc(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMH));
+        }
+        return dsMon;
     }
 
     public static HeThongQuanLy taoHeThong() throws Exception {
