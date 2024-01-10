@@ -1,7 +1,6 @@
 package com.btl.quanlydecuong;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,9 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class HeThongQuanLy {
@@ -190,5 +186,14 @@ public class HeThongQuanLy {
         DanhSachDeCuong ds = timGiangVien(maGiangVien).getDsDeCuongBienSoan();
         ds.xuatDanhSach();
         return ds;
+    }
+    public static File layFile(String tenFile) throws Exception
+    {
+        Path path = Paths.get("GiangVien");
+        Files.createDirectories(path);
+        File file = path.resolve(tenFile).toFile();
+        if(!file.isFile()&&!file.createNewFile())
+            throw new Exception("Loi khi doc file: " + file.getAbsolutePath());
+        return file;
     }
 }
