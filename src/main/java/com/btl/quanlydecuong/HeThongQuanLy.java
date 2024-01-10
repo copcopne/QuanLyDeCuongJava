@@ -128,7 +128,7 @@ public class HeThongQuanLy {
                             String phuongPhapDanhGia = sc3.next();
                             String noiDung = sc3.next();
                             int tyTrong = sc3.nextInt();
-                            HinhThuc hinhThuc = HinhThuc.taoHinhThuc(dc, phuongPhapDanhGia, noiDung, tyTrong, isCreated);
+                            HinhThuc hinhThuc = HinhThuc.taoHinhThuc(dc, phuongPhapDanhGia, noiDung, tyTrong);
                             dc.themHinhThuc(hinhThuc);
                         }
                     }
