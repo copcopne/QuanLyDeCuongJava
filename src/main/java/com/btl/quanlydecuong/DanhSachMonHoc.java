@@ -52,6 +52,9 @@ public class DanhSachMonHoc {
     public boolean isMonDaTonTai(MonHoc m) {
         return HeThongQuanLy.dsMonHoc.getDsMonHoc().contains(m);
     }
+    public boolean isMonDaTonTai(String maMon) {
+        return HeThongQuanLy.dsMonHoc.getDsMonHoc().stream().filter(m->m.getMaMonHoc().equals(maMon)).findFirst().isPresent();
+    }
 
     @Override
     public String toString() {

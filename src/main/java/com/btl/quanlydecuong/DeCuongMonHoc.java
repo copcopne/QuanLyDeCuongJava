@@ -150,8 +150,11 @@ public class DeCuongMonHoc {
         
     }
     public void themHinhThuc(HinhThuc h) {
-        if(tyTrongHienTai == 100 || tyTrongHienTai + h.getTyTrong() > 100) return;
-        this.hinhThucDanhGia.add(h);
+        if(tyTrongHienTai == 100 || tyTrongHienTai + h.getTyTrong() > 100) {}
+        else {
+            this.tyTrongHienTai += h.getTyTrong();
+            this.hinhThucDanhGia.add(h);
+        } // check dieu kien
     }
 
     public boolean isDeCuongHopLe() {

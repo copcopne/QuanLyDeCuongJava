@@ -82,6 +82,16 @@ public class GiangVien {
             }
         }
     }
+    public void taoMonDeCuong(He he, String maMon) {
+        System.out.print("Nhap noi dung mon hoc: ");
+        String nd = CauHinh.SC.nextLine();
+        System.out.print("Nhap muc tieu mon hoc: ");
+        String mt = CauHinh.SC.nextLine();
+        System.out.print("Nhap chuan dau ra mon hoc: ");
+        String cdr = CauHinh.SC.nextLine();
+        this.taoMonDeCuong(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMon), he, nd, mt, cdr);
+        
+    }
 
     @Override
     public String toString() {
