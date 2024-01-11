@@ -182,7 +182,7 @@ public class DeCuongMonHoc {
                         String nd = CauHinh.SC.nextLine();
                         System.out.print("Nhap ty trong: ");
                         int tt = Integer.parseInt(CauHinh.SC.nextLine());
-                        if (tt == 100) {
+                        if (tt >= 100) {
                             System.out.println("Loi ty trong");
                         } else {
                             this.themHinhThuc(HinhThuc.taoHinhThuc(this, pp, nd, tt));
