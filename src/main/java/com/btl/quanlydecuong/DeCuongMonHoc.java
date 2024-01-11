@@ -1,5 +1,8 @@
 package com.btl.quanlydecuong;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -390,21 +393,36 @@ public class DeCuongMonHoc {
         this.hinhThucDanhGia.remove(h);
     }
 
-    public void xuatDeCuong() {
-        if (!this.isDeCuongHopLe()) {
-            System.err.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
-        } else {
-            // xuất đề cương
-        }
-
-    }
-
     public String lietKeHinhThuc() {
         String s = "";
         for (var x : this.hinhThucDanhGia) {
             s += x;
         }
         return s;
+    }
+
+    public void xuatDeCuong() throws Exception {
+        if (!this.isDeCuongHopLe()) {
+            System.err.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
+        } else {
+            File file = new File("DeCuong.txt");
+            if (!file.isFile() && !file.createNewFile()) {
+                throw new Exception("Loi khi tao file moi: " + file.getAbsolutePath());
+            }
+            try (FileWriter fw = new FileWriter(file, false)) {
+                String str = String.format("%s\nHe dao tao: %s\nNoi dung: %s\nMuc tieu: %s\nHinh thuc danh gia:\n==========\n%s\n==========\nChuan dau ra: %s\nGiang vien bien soan: %s\nDanh sach mon tien quyet:%s\nDanh sach mon truoc:%s\n",
+                        this.mon, this.heDaoTao, this.noiDungMonHoc, this.mucTieuMonHoc,
+                        this.lietKeHinhThuc(), this.chuanDauRa, this.giangVienBienSoan.getTenGiangVien(),
+                        this.monHocTienQuyet.getTenMonTrongDanhSach(),
+                        this.monHocTruoc.getTenMonTrongDanhSach());
+                fw.write(str);
+                System.out.print(str);
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
+        }
     }
 
     @Override
