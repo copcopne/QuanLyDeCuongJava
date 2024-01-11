@@ -1,4 +1,0 @@
-GT0|LT|Gt|e|
-|3|NVA100|
-GT1,GT3|
-GT4|
