@@ -131,9 +131,9 @@ public class Run {
                         }
                     }
                 }
-            } else if (!CauHinh.CheckInteger(choice)) {
+            } else if (!CauHinh.isInteger(choice)) {
                 System.out.println("Nhap khong hop le, vui long thao tac lai");
-            } else if (Integer.parseInt(choice) - 1 < 0 && heThongQuanLy.getDsGiangVien().size() < Integer.parseInt(choice) - 1) {
+            } else if ((heThongQuanLy.getDsGiangVien().size() < Integer.parseInt(choice)) || (Integer.parseInt(choice) - 1 < 0)) {
                 System.out.println("Nhap khong hop le, vui long thao tac lai");
             } else {
                 GiangVien gv = heThongQuanLy.getDsGiangVien().get(Integer.parseInt(choice) - 1);
@@ -187,12 +187,13 @@ public class Run {
                                 }
                                 System.out.print("\n>");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
-                                } else if (Integer.parseInt(choice) - 1 < 0 && He.values().length < Integer.parseInt(choice) - 1) {
+                                } else if (Integer.parseInt(choice) - 1 < 0 && He.values().length < Integer.parseInt(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
-                                } else 
-                                gv.taoMonDeCuong(He.values()[Integer.parseInt(choice) - 1], string_temp);
+                                } else {
+                                    gv.taoMonDeCuong(He.values()[Integer.parseInt(choice) - 1], string_temp);
+                                }
                             }
                         }
                         case "2" -> { // cap nhat thong tin de cuong
@@ -207,9 +208,9 @@ public class Run {
                                 }
                                 System.out.print(">");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
-                                } else if (Integer.parseInt(choice) - 1 < 0 && gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
+                                } else if (Integer.parseInt(choice) - 1 < 0 && gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
                                 } else {
                                     gv.getDsDeCuongBienSoan().getDsDeCuong()
@@ -287,19 +288,15 @@ public class Run {
                             if (gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {
                                 System.out.println("Ban khong co de cuong de xuat");
                             } else {
-//                                for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
-//                                    System.out.printf("%d\n", i++);
-//                                    x.xuatDeCuong();
-//                                }
                                 for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
-                                    System.out.printf("==%2d ==\nMon: %s(%s)\nHe dao tao: %s\n======\n",
+                                    System.out.printf("==%02d==\nMon: %s(%s)\nHe dao tao: %s\n======\n",
                                             i++, x.getMon().getTenMonHoc(), x.getMon().getMaMonHoc(), x.getHeDaoTao());
                                 }
                                 System.out.println("Chon de cuong muon xuat");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
-                                } else if (Integer.parseInt(choice) - 1 < 0 && gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
+                                } else if (Integer.parseInt(choice) - 1 < 0 || gv.getDsDeCuongBienSoan().getDsDeCuong().size() < (Integer.parseInt(choice))) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
                                 } else {
                                     DeCuongMonHoc dc_temp = gv.getDsDeCuongBienSoan().getDsDeCuong().get(Integer.parseInt(choice) - 1);

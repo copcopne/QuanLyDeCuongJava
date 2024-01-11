@@ -212,7 +212,7 @@ public class DeCuongMonHoc {
                                 this.lietKeHinhThuc();
                                 System.out.print("Nhap thu tu hinh thuc muon chinh sua: ");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le");
                                 } else if (Integer.parseInt(choice) - 1 < 0 && this.getHinhThucDanhGia().size() < Integer.parseInt(choice) - 1) {
                                     System.out.println("Nhap khong hop le");
@@ -237,7 +237,7 @@ public class DeCuongMonHoc {
                                 this.lietKeHinhThuc();
                                 System.out.print("Nhap thu tu hinh thuc muon xoa: ");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le");
                                 } else if (Integer.parseInt(choice) - 1 < 0 && this.getHinhThucDanhGia().size() < Integer.parseInt(choice) - 1) {
                                     System.out.println("Nhap khong hop le");
@@ -276,7 +276,7 @@ public class DeCuongMonHoc {
                                 System.out.println(this.getMonHocTienQuyet());
                                 System.out.println("Nhap so thu tu mon can xoa: ");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le");
                                 } else if (Integer.parseInt(choice) - 1 < 0 && this.getMonHocTienQuyet().getDsMonHoc().size() < Integer.parseInt(choice) - 1) {
                                     System.out.println("Nhap khong hop le");
@@ -315,7 +315,7 @@ public class DeCuongMonHoc {
                                 System.out.println(this.getMonHocTruoc());
                                 System.out.println("Nhap so thu tu mon can xoa: ");
                                 choice = CauHinh.SC.nextLine();
-                                if (!CauHinh.CheckInteger(choice)) {
+                                if (!CauHinh.isInteger(choice)) {
                                     System.out.println("Nhap khong hop le");
                                 } else if (Integer.parseInt(choice) - 1 < 0 && this.getMonHocTruoc().getDsMonHoc().size() < Integer.parseInt(choice) - 1) {
                                     System.out.println("Nhap khong hop le");
@@ -405,7 +405,7 @@ public class DeCuongMonHoc {
         if (!this.isDeCuongHopLe()) {
             System.err.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
         } else {
-            File file = new File("DeCuong.txt");
+            File file = new File(String.format("%s%s%s.txt", this.giangVienBienSoan.getMaGiangVien(),this.mon.getMaMonHoc(),this.heDaoTao));
             if (!file.isFile() && !file.createNewFile()) {
                 throw new Exception("Loi khi tao file moi: " + file.getAbsolutePath());
             }
@@ -416,7 +416,7 @@ public class DeCuongMonHoc {
                         this.monHocTienQuyet.getTenMonTrongDanhSach(),
                         this.monHocTruoc.getTenMonTrongDanhSach());
                 fw.write(str);
-                System.out.print(str);
+                System.out.println("Xuat thanh cong");
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(file);
             } catch (Exception ex) {

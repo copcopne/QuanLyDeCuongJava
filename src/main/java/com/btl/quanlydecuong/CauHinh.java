@@ -12,7 +12,7 @@ public class CauHinh {
     public CauHinh() {
     }
 
-    public static boolean CheckInteger(String input) {
+    public static boolean isInteger(String input) {
         try {
             Integer.valueOf(input);
             return true;
