@@ -106,8 +106,6 @@ public class GiangVien {
     public void luuFileDeCuong() {
         Path pathDeCuong = HeThongQuanLy.layFile("DSDeCuong.txt", this.maGiangVien);
         StringBuilder str = new StringBuilder();
-        System.out.print(this.dsDeCuongBienSoan.getDsDeCuong().isEmpty());
-        System.out.println("Size of the list: " + this.dsDeCuongBienSoan.getDsDeCuong().size());
         this.dsDeCuongBienSoan.getDsDeCuong().forEach(dc -> {
 
             try{
