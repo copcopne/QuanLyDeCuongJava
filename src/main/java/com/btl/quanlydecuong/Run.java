@@ -186,8 +186,13 @@ public class Run {
                                     System.out.printf("%d.%s\n", i++, h);
                                 }
                                 System.out.print("\n>");
-                                int_temp = Integer.parseInt(CauHinh.SC.nextLine());
-                                gv.taoMonDeCuong(He.values()[int_temp - 1], string_temp);
+                                choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
+                                    System.out.println("Nhap khong hop le, vui long thao tac lai");
+                                } else if (Integer.parseInt(choice) - 1 < 0 && He.values().length < Integer.parseInt(choice) - 1) {
+                                    System.out.println("Nhap khong hop le, vui long thao tac lai");
+                                } else 
+                                gv.taoMonDeCuong(He.values()[Integer.parseInt(choice) - 1], string_temp);
                             }
                         }
                         case "2" -> { // cap nhat thong tin de cuong
