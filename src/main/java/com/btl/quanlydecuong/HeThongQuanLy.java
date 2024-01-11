@@ -90,6 +90,7 @@ public class HeThongQuanLy {
                 }
 
                 //Đọc file DSDeCuong.txt trong subfolder
+                if(Files.notExists(sub.resolve("DSDeCuong.txt"))) return; //skip nếu không có file DSDeCuong.txt
                 try (Scanner sc2 = new Scanner(sub.resolve("DSDeCuong.txt"))) {
                     sc2.useDelimiter("\\s*\\|\\s*");
                     while (sc2.hasNext()) {
