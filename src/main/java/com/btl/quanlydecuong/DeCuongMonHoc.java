@@ -182,9 +182,12 @@ public class DeCuongMonHoc {
                         String nd = CauHinh.SC.nextLine();
                         System.out.print("Nhap ty trong: ");
                         int tt = Integer.parseInt(CauHinh.SC.nextLine());
-                        this.themHinhThuc(HinhThuc.taoHinhThuc(this, pp, nd, tt));
-                        System.out.println("Them hinh thuc moi thanh cong");
-
+                        if (tt == 100) {
+                            System.out.println("Loi ty trong");
+                        } else {
+                            this.themHinhThuc(HinhThuc.taoHinhThuc(this, pp, nd, tt));
+                            System.out.println("Them hinh thuc moi thanh cong");
+                        }
                     } else {
                         System.out.println("\n1.Them hinh thuc moi\n2.Chinh sua hinh thuc hien co\n3.Xoa hinh thuc hien co");
                         choice = CauHinh.SC.nextLine();
@@ -404,7 +407,7 @@ public class DeCuongMonHoc {
         if (!this.isDeCuongHopLe()) {
             System.err.println("De cuong khong hop le, vui long thuc hien chinh sua hinh thuc");
         } else {
-            File file = new File(String.format("%s%s%s.txt", this.giangVienBienSoan.getMaGiangVien(),this.mon.getMaMonHoc(),this.heDaoTao));
+            File file = new File(String.format("%s%s%s.txt", this.giangVienBienSoan.getMaGiangVien(), this.mon.getMaMonHoc(), this.heDaoTao));
             if (!file.isFile() && !file.createNewFile()) {
                 throw new Exception("Loi khi tao file moi: " + file.getAbsolutePath());
             }
