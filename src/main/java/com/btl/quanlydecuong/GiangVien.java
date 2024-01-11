@@ -106,8 +106,11 @@ public class GiangVien {
     public void luuFileDeCuong() {
         Path pathDeCuong = HeThongQuanLy.layFile("DSDeCuong.txt", this.maGiangVien);
         StringBuilder str = new StringBuilder();
+        System.out.print(this.dsDeCuongBienSoan.getDsDeCuong().isEmpty());
+        System.out.println("Size of the list: " + this.dsDeCuongBienSoan.getDsDeCuong().size());
         this.dsDeCuongBienSoan.getDsDeCuong().forEach(dc -> {
 
+            try{
             str.append(dc.getMon().getMaMonHoc()).append("|")
                     .append(dc.getHeDaoTao() == He.chinhQuy ? "CQ|" : "LT|")
                     .append(dc.getNoiDungMonHoc()).append("|")
@@ -126,9 +129,11 @@ public class GiangVien {
             });
             str.append("|\n");
             dc.getMonHocTruoc().getDsMonHoc().forEach(monHoc -> {
-                str.append(monHoc.getMaMonHoc()).append("|");
+                str.append(monHoc.getMaMonHoc()).append(",");
             });
             str.append("|\n\n");
+            }
+            catch(Exception e){System.err.print(e);}
         });
         try (FileWriter fw = new FileWriter(pathDeCuong.toFile(), false)) {
             fw.write(str.toString());
