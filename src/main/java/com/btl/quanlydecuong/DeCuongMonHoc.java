@@ -383,7 +383,7 @@ public class DeCuongMonHoc {
     }
 
     public boolean isDeCuongHopLe() {
-        return this.tyTrongHienTai == 10;
+        return this.tyTrongHienTai == 100;
     }
 
     public void xoaHinhThuc(HinhThuc h) {
