@@ -238,7 +238,7 @@ public class Run {
                                         .anyMatch(dc1 -> dc1.getMaMonHoc().equals(s4_temp)))
                                         .collect(Collectors.toList());
                                 List<DeCuongMonHoc> mhTienQuyet = HeThongQuanLy.dsDeCuong.getDsDeCuong().stream()
-                                        .filter(dc -> dc.getMonHocTruoc().getDsMonHoc().stream()
+                                        .filter(dc -> dc.getMonHocTienQuyet().getDsMonHoc().stream()
                                         .anyMatch(dc1 -> dc1.getMaMonHoc().equals(s4_temp)))
                                         .collect(Collectors.toList());
                                 if (mhTruoc.isEmpty()) {
@@ -287,9 +287,13 @@ public class Run {
                             if (gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {
                                 System.out.println("Ban khong co de cuong de xuat");
                             } else {
+//                                for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
+//                                    System.out.printf("%d\n", i++);
+//                                    x.xuatDeCuong();
+//                                }
                                 for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
-                                    System.out.printf("%d\n", i++);
-                                    x.xuatDeCuong();
+                                    System.out.printf("==%2d ==\nMon: %s(%s)\nHe dao tao: %s\n======\n",
+                                            i++, x.getMon().getTenMonHoc(), x.getMon().getMaMonHoc(), x.getHeDaoTao());
                                 }
                                 System.out.println("Chon de cuong muon xuat");
                                 choice = CauHinh.SC.nextLine();
