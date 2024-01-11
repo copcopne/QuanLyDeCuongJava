@@ -3,8 +3,6 @@ package com.btl.quanlydecuong;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GiangVien {
 
@@ -71,8 +69,7 @@ public class GiangVien {
     }
 
     public void taoMonDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
-            String mucTieuMonHoc, String chuanDauRa) { // cần test 
-
+            String mucTieuMonHoc, String chuanDauRa) { 
         CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao,
                 noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this);
         if (CauHinh.DCMonHoc_temp == null) {

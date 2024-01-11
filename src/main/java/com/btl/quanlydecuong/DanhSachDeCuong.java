@@ -2,7 +2,6 @@ package com.btl.quanlydecuong;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +40,7 @@ public class DanhSachDeCuong {
     public DeCuongMonHoc timKiem(MonHoc h) {
         return this.dsDeCuong.stream().filter(d-> d.getMon() == h).findFirst().get();
     }
-    //chua test
+    
     public void sapXepDeCuong() {
         this.dsDeCuong.sort((dc1, dc2) -> {
             int kiemTraTinChi = Double.compare(dc2.getMon().getSoTinChi(), dc1.getMon().getSoTinChi());
@@ -63,14 +62,12 @@ public class DanhSachDeCuong {
         
         //xuat ra man hinh
         System.out.println("Thong ke de cuong theo so tin chi:");
-        //copy code tren google cho khuc nay ;;
         for (Map.Entry<Double, Integer> entry : deCuongTheoTinChi.entrySet()) {
             System.out.printf("%.1f tin chi: %d de cuong", entry.getKey(),entry.getValue());
             System.out.println("");
         }
     }
 
-    //chua test
     public void xuatDanhSach() {
         this.dsDeCuong.forEach(dc -> System.out.printf("%s\n%s",
                 dc.getGiangVienBienSoan().getTenGiangVien(), dc));

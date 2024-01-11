@@ -44,7 +44,6 @@ public class DanhSachMonHoc {
         HeThongQuanLy.luuFileMonHoc();
     }
 
-    //chua test
     public DanhSachMonHoc timKiemMonBangTen(String keyword) {
         List<MonHoc> ds = this.dsMonHoc.stream()
                 .filter(m -> m.getTenMonHoc().contains(keyword))

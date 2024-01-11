@@ -122,7 +122,6 @@ public class DeCuongMonHoc {
     public void capNhatThongTin() {
         boolean isEditing = true;
         String choice, s_temp;
-        int int_temp;
         while (isEditing) {
             System.out.println(this);
             System.out.println("\n\n1.Sua noi dung trong de cuong");
@@ -357,7 +356,7 @@ public class DeCuongMonHoc {
         this.monHocTienQuyet.getDsMonHoc().add(m);
     }
 
-    public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, int tyTrong) { // chưa xong/chưa đảm bảo chạy đúng :))
+    public void themHinhThuc(String phuongPhapDanhGia, String noiDungDanhGia, int tyTrong) {
         if (tyTrongHienTai == 100); // báo lỗi do tổng tỷ trọng đã đủ 100 và quay về
         if (tyTrongHienTai < 100 && tyTrongHienTai >= 0
                 && tyTrongHienTai + tyTrong <= 100) {

@@ -1,17 +1,10 @@
 package com.btl.quanlydecuong;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author Si Nguyen
- */
+
 public class Run {
 
     public static void main(String[] args) throws Exception {
@@ -228,7 +221,7 @@ public class Run {
                                 System.out.println("Mon hoc khong ton tai trong he thong");
                             }
                         }
-                        case "4" -> { // xac dinh danh sach mon hoc trc va tien quyet ( can test :)) )
+                        case "4" -> { // xac dinh danh sach mon hoc trc va tien quyet
                             System.out.print("Nhap ma mon hoc: ");
                             final String s4_temp = CauHinh.SC.nextLine();
                             if (!HeThongQuanLy.dsMonHoc.isMonDaTonTai(s4_temp)) {
@@ -258,7 +251,7 @@ public class Run {
                                 }
                             }
                         }
-                        case "5" -> { // sap xep de cuong (can test)
+                        case "5" -> { // sap xep de cuong
                             HeThongQuanLy.dsDeCuong.sapXepDeCuong();
                             System.out.println("Sap xep thanh cong!");
                             HeThongQuanLy.dsDeCuong.xuatDanhSach();
