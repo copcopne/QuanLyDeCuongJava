@@ -67,13 +67,13 @@ public class DanhSachDeCuong {
         //copy code tren google cho khuc nay ;;
         for (Map.Entry<Double, Integer> entry : deCuongTheoTinChi.entrySet()) {
             System.out.printf("%.1f tin chi: %d de cuong", entry.getKey(),entry.getValue());
-            
         }
+        System.out.println("");
     }
 
     //chua test
     public void xuatDanhSach() {
-        this.dsDeCuong.forEach(dc -> System.out.printf("%s",
+        this.dsDeCuong.forEach(dc -> System.out.printf("%s\n%s",
                 dc.getGiangVienBienSoan().getTenGiangVien(), dc));
     }
 
