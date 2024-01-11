@@ -196,7 +196,7 @@ public class Run {
                                 i = 1;
                                 System.out.println("Chon mon can sua:");
                                 for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
-                                    System.out.printf("==%2d==\nMon: %s(%s)\nHe dao tao: %s\n======\n",
+                                    System.out.printf("==%02d==\nMon: %s(%s)\nHe dao tao: %s\n======\n",
                                             i++, x.getMon().getTenMonHoc(), x.getMon().getMaMonHoc(), x.getHeDaoTao());
                                 }
                                 System.out.print(">");

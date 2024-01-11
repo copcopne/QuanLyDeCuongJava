@@ -227,7 +227,7 @@ public class HeThongQuanLy {
             str.append(monHoc.getClass().getSimpleName()).append("|")
                     .append(monHoc.getMaMonHoc()).append("|")
                     .append(monHoc.getTenMonHoc()).append("|")
-                    .append(monHoc.getMaMonHoc()).append("|")
+                    .append(monHoc.getMoTaMonHoc()).append("|")
                     .append(monHoc.getSoTinChi()).append("|\n");
         });
         try (FileWriter fw = new FileWriter(pathMonHoc.toFile(), false)) {

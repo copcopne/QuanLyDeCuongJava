@@ -1,0 +1,7 @@
+LTM|CQ|Noi dung mon lap trinh mang|muc tieu mon lap trinh mang|
+pp1-lap trinh mang,nd1-laptrinh mang,40,
+pp2-lap trinh mang,nd2-lap trinh mang,60,
+|cdr lap trinh mang|NVA123|
+OOP,MMT,|
+|
+
