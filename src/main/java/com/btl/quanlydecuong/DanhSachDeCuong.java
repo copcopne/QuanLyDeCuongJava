@@ -52,7 +52,6 @@ public class DanhSachDeCuong {
         });
     }
 
-    //chua test / chua chac
     public void thongKeDeCuong() {
         Map<Double,Integer> deCuongTheoTinChi = new HashMap<>();
         //them key va value
@@ -67,8 +66,8 @@ public class DanhSachDeCuong {
         //copy code tren google cho khuc nay ;;
         for (Map.Entry<Double, Integer> entry : deCuongTheoTinChi.entrySet()) {
             System.out.printf("%.1f tin chi: %d de cuong", entry.getKey(),entry.getValue());
+            System.out.println("");
         }
-        System.out.println("");
     }
 
     //chua test
