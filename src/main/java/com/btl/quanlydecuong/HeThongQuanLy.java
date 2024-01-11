@@ -203,7 +203,7 @@ public class HeThongQuanLy {
             return filePath;
         }
     }
-    public void luuFileMonHoc()
+    public static void luuFileMonHoc()
     {
         Path pathMonHoc = Paths.get("MonHoc.txt");
         try{

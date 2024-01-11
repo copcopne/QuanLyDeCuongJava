@@ -73,19 +73,15 @@ public class GiangVien {
     public void taoMonDeCuong(MonHoc mon, He heDaoTao, String noiDungMonHoc,
             String mucTieuMonHoc, String chuanDauRa) { // cần test 
 
-        if ((HeThongQuanLy.dsDeCuong.timKiem(mon) == null)
-                || ((HeThongQuanLy.dsMonHoc.isMonDaTonTai(mon) == true)
-                && (HeThongQuanLy.dsDeCuong.timKiem(mon).getHeDaoTao().equals(heDaoTao) == false))) {
-
-            CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao,
-                    noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this);
-            if (CauHinh.DCMonHoc_temp == null) {
-                // lỗi đã tạo quá đề cương cho phép
-            } else {
-                this.setSoDeCuongBienSoan(this.getSoDeCuongBienSoan() + 1);
-                this.dsDeCuongBienSoan.getDsDeCuong().add(CauHinh.DCMonHoc_temp);
-                HeThongQuanLy.dsDeCuong.getDsDeCuong().add(CauHinh.DCMonHoc_temp);
-            }
+        CauHinh.DCMonHoc_temp = DeCuongMonHoc.taoDeCuong(mon, heDaoTao,
+                noiDungMonHoc, mucTieuMonHoc, chuanDauRa, this);
+        if (CauHinh.DCMonHoc_temp == null) {
+            // lỗi đã tạo quá đề cương cho phép
+        } else {
+            this.setSoDeCuongBienSoan(this.getSoDeCuongBienSoan() + 1);
+            this.dsDeCuongBienSoan.getDsDeCuong().add(CauHinh.DCMonHoc_temp);
+            HeThongQuanLy.dsDeCuong.getDsDeCuong().add(CauHinh.DCMonHoc_temp);
+            System.out.println("Tao de cuong thanh cong");
         }
     }
 
@@ -111,44 +107,44 @@ public class GiangVien {
         Path pathDeCuong = HeThongQuanLy.layFile("DSDeCuong.txt", this.maGiangVien);
         StringBuilder str = new StringBuilder();
         this.dsDeCuongBienSoan.getDsDeCuong().forEach(dc -> {
-            
+
             str.append(dc.getMon().getMaMonHoc()).append("|")
                     .append(dc.getHeDaoTao() == He.chinhQuy ? "CQ|" : "LT|")
                     .append(dc.getNoiDungMonHoc()).append("|")
                     .append(dc.getMucTieuMonHoc()).append("|\n");
-            
+
             dc.getHinhThucDanhGia().forEach(ht -> {
                 str.append(ht.getPhuongPhapDanhGia()).append(",")
                         .append(ht.getNoiDungDanhGia()).append(",")
                         .append(ht.getTyTrong()).append(",\n");
             });
-            
+
             str.append("|").append(dc.getChuanDauRa()).append("|")
                     .append(dc.getGiangVienBienSoan().getMaGiangVien()).append("|\n");
             dc.getMonHocTienQuyet().getDsMonHoc().forEach(monHoc -> {
                 str.append(monHoc.getMaMonHoc()).append(",");
             });
             str.append("|\n");
-            dc.getMonHocTruoc().getDsMonHoc().forEach(monHoc->{
+            dc.getMonHocTruoc().getDsMonHoc().forEach(monHoc -> {
                 str.append(monHoc.getMaMonHoc()).append("|");
             });
             str.append("|\n\n");
         });
-        try(FileWriter fw = new FileWriter(pathDeCuong.toFile(),false)) {
+        try (FileWriter fw = new FileWriter(pathDeCuong.toFile(), false)) {
             fw.write(str.toString());
         } catch (IOException ex) {
             System.err.print(ex);
         }
     }
-    public void luuFileThongTinGV()
-    {
+
+    public void luuFileThongTinGV() {
         Path pathGV = HeThongQuanLy.layFile("ThongTinGV.txt", this.maGiangVien);
         StringBuilder str = new StringBuilder();
         str.append(this.tenGiangVien).append("|")
                 .append(this.maGiangVien).append("|")
                 .append(this.email).append("|")
-                .append(this.trinhDo == TrinhDo.thacSi? "thacSi|":"tienSi|");
-        try(FileWriter fw = new FileWriter(pathGV.toFile(),false)) {
+                .append(this.trinhDo == TrinhDo.thacSi ? "thacSi|" : "tienSi|");
+        try (FileWriter fw = new FileWriter(pathGV.toFile(), false)) {
             fw.write(str.toString());
         } catch (IOException ex) {
             System.err.print(ex);

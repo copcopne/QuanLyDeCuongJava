@@ -22,21 +22,26 @@ public class DanhSachMonHoc {
 
     public void themMonHoc(MonHoc... mh) {
         this.dsMonHoc.addAll(Arrays.asList(mh));
+        HeThongQuanLy.luuFileMonHoc();
     }
     public void themMonHoc(DanhSachMonHoc h) {
         this.dsMonHoc.addAll(h.getDsMonHoc());
+        HeThongQuanLy.luuFileMonHoc();
     }
     
     public void themMonHoc(MonHoc mh) {
         this.dsMonHoc.add(mh);
+        HeThongQuanLy.luuFileMonHoc();
     }
     
     public void themMonHoc(List<MonHoc> mh) {
         this.dsMonHoc.addAll(mh);
+        HeThongQuanLy.luuFileMonHoc();
     }
     
     public void xoaMonHoc(MonHoc mh) {
         dsMonHoc.remove(mh);
+        HeThongQuanLy.luuFileMonHoc();
     }
 
     //chua test

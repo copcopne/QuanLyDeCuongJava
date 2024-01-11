@@ -31,6 +31,67 @@ public class Run {
             choice = CauHinh.SC.nextLine();
             if (choice.equals("e")) {
                 return;
+            } else if (choice.equals("admin")) {
+                boolean isEditing = true;
+                while (isEditing) {
+                    System.out.println("1.Them mon");
+                    System.out.println("2.Xoa mon hien co");
+                    System.out.println("3.Quay lai");
+                    choice = CauHinh.SC.nextLine();
+                    switch (choice) {
+                        case "1" -> {
+                            System.out.print("Nhap ma mon: ");
+                            String mm = CauHinh.SC.nextLine();
+                            if (HeThongQuanLy.dsMonHoc.isMonDaTonTai(mm)) {
+                                System.out.println("Da ton tai mon hoc voi ma mon nay");
+                            } else {
+                                System.out.print("Nhap ten mon: ");
+                                String tm = CauHinh.SC.nextLine();
+                                System.out.print("Mo ta mon: ");
+                                String mt = CauHinh.SC.nextLine();
+                                System.out.print("So tin chi: ");
+                                int tc = Integer.parseInt(CauHinh.SC.nextLine());
+                                System.out.println("Khoi kien thuc:");
+                                System.out.println("1.Mon co so");
+                                System.out.println("2.Mon co so nganh");
+                                System.out.println("3.Mon chuyen nganh");
+                                System.out.print(">");
+                                choice = CauHinh.SC.nextLine();
+                                switch (choice) {
+                                    case "1" -> {
+                                        HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSo(mm, tm, tc, mt));
+                                    }
+                                    case "2" -> {
+                                        HeThongQuanLy.dsMonHoc.themMonHoc(new MonCoSoNganh(mm, tm, tc, mt));
+                                    }
+                                    case "3" -> {
+                                        HeThongQuanLy.dsMonHoc.themMonHoc(new MonChuyenNganh(mm, tm, tc, mt));
+                                    }
+                                    default -> {
+                                        System.out.println("Khong hop le, vui long thao tac lai");
+                                    }
+                                }
+                            }
+                        }
+                        case "2" -> {
+                            System.out.print("Nhap ma mon: ");
+                            String mm = CauHinh.SC.nextLine();
+                            if (HeThongQuanLy.dsMonHoc.isMonDaTonTai(mm)) {
+                                HeThongQuanLy.dsMonHoc.getDsMonHoc().removeIf(mh -> mh.getMaMonHoc().equals(mm));
+                            } else {
+                                System.out.println("Mon hoc khong ton tai");
+                            }
+
+                        }
+                        case "3" -> {
+                            isEditing = false;
+                        }
+                        default -> {
+                            System.out.println("Khong hop le, vui long thuc hien lai");
+                        }
+                    }
+                    CauHinh.pressEnterToContinue();
+                }
             } else if (choice.equals("0")) {
                 System.out.print("Nhap ten giang vien: ");
                 String name_t = CauHinh.SC.nextLine();
@@ -65,7 +126,7 @@ public class Run {
                             GiangVien gv_temp = new GiangVien(name_t, ma_t, email_t, t);
                             gv_temp.luuFileThongTinGV();
                             heThongQuanLy.getDsGiangVien().add(gv_temp);
-                            
+
                             System.out.println("Tao giang vien moi thanh cong");
                         }
                     }
@@ -118,27 +179,11 @@ public class Run {
                                     }
                                     System.out.println("Tien hanh tao mon voi he dao tao con lai");
                                     gv.taoMonDeCuong(b, string_temp);
-                                    i = 1;
-                                    int y = 0;
-                                    for (var h : EnumSet.allOf(He.class)) {
-                                        if (h.equals(a)) {
-                                            y = i;
-                                            break;
-                                        }
-                                        System.out.printf("%d. %s\n", i, h);
-                                    }
-                                    System.out.print("\n>");
-                                    int_temp = Integer.parseInt(CauHinh.SC.nextLine());
-                                    if (y == int_temp) {
-                                        System.out.println("Loi");
-                                    } else {
-                                        gv.taoMonDeCuong(He.values()[int_temp - 1], string_temp);
-                                    }
                                 }
                             } else {
                                 i = 1;
                                 for (var h : EnumSet.allOf(He.class)) {
-                                    System.out.printf("%d. %s\n", i++, h);
+                                    System.out.printf("%d.%s\n", i++, h);
                                 }
                                 System.out.print("\n>");
                                 int_temp = Integer.parseInt(CauHinh.SC.nextLine());
@@ -234,34 +279,39 @@ public class Run {
                         }
                         case "7" -> { // xuat dc hoan chinh
                             i = 1;
-                            if(gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {System.out.println("Ban khong co de cuong de xuat");}
-                            else {
-                            for(var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
-                                System.out.printf("%d\n", i++);
-                                x.xuatDeCuong();
-                            }
-                            System.out.println("Chon de cuong muon xuat");
-                            choice = CauHinh.SC.nextLine(); 
-                            if (!CauHinh.CheckInteger(choice)) {
+                            if (gv.getDsDeCuongBienSoan().getDsDeCuong().isEmpty()) {
+                                System.out.println("Ban khong co de cuong de xuat");
+                            } else {
+                                for (var x : gv.getDsDeCuongBienSoan().getDsDeCuong()) {
+                                    System.out.printf("%d\n", i++);
+                                    x.xuatDeCuong();
+                                }
+                                System.out.println("Chon de cuong muon xuat");
+                                choice = CauHinh.SC.nextLine();
+                                if (!CauHinh.CheckInteger(choice)) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
                                 } else if (Integer.parseInt(choice) - 1 < 0 && gv.getDsDeCuongBienSoan().getDsDeCuong().size() < Integer.parseInt(choice) - 1) {
                                     System.out.println("Nhap khong hop le, vui long thao tac lai");
                                 } else {
                                     DeCuongMonHoc dc_temp = gv.getDsDeCuongBienSoan().getDsDeCuong().get(Integer.parseInt(choice) - 1);
-                                    if(!dc_temp.isDeCuongHopLe()) {
+                                    if (!dc_temp.isDeCuongHopLe()) {
                                         System.out.println("De cuong chua hop le, chua the xuat de cuong");
                                     } else {
+                                        gv.luuFileDeCuong();
                                         dc_temp.xuatDeCuong();
                                     }
-                                }}
+                                }
+                            }
                         }
                         case "8" -> { // thong ke de cuong
                             HeThongQuanLy.dsDeCuong.thongKeDeCuong();
                         }
                         case "0" -> { // dang xuat
+                            gv.luuFileDeCuong();
                             isLogon = false;
                         }
                         case "e" -> { // thoat
+                            gv.luuFileDeCuong();
                             return;
                         }
                         default -> {
