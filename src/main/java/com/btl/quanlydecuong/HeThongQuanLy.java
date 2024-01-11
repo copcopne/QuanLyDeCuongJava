@@ -36,7 +36,6 @@ public class HeThongQuanLy {
 
     private HeThongQuanLy() throws Exception {
         HeThongQuanLy.isCreated = true;
-
         //Đọc danh sách môn
         File file = new File("MonHoc.txt");
         if (!file.isFile() && !file.createNewFile()) {
@@ -90,7 +89,9 @@ public class HeThongQuanLy {
                 }
 
                 //Đọc file DSDeCuong.txt trong subfolder
-                if(Files.notExists(sub.resolve("DSDeCuong.txt"))) return; //skip nếu không có file DSDeCuong.txt
+                if (Files.notExists(sub.resolve("DSDeCuong.txt"))) {
+                    return; //skip nếu không có file DSDeCuong.txt
+                }
                 try (Scanner sc2 = new Scanner(sub.resolve("DSDeCuong.txt"))) {
                     sc2.useDelimiter("\\s*\\|\\s*");
                     while (sc2.hasNext()) {
@@ -119,7 +120,8 @@ public class HeThongQuanLy {
 
                         DeCuongMonHoc dc = DeCuongMonHoc.taoDeCuong(
                                 HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMon),
-                                he, noiDungMon, mucTieu, chuanDauRa, this.timGiangVien(maGV));
+                                he, noiDungMon, mucTieu, chuanDauRa
+                                , this.timGiangVien(maGV));
                         dc.setMonHocTienQuyet(dsMonTienQuyet);
                         dc.setMonHocTruoc(dsMonHocTruoc);
 
@@ -130,14 +132,18 @@ public class HeThongQuanLy {
                             String phuongPhapDanhGia = sc3.next();
                             String noiDung = sc3.next();
                             int tyTrong = sc3.nextInt();
-                            HinhThuc hinhThuc = HinhThuc.taoHinhThuc(dc, phuongPhapDanhGia, noiDung, tyTrong);
+                            HinhThuc hinhThuc = HinhThuc.taoHinhThuc(dc, phuongPhapDanhGia
+                                    , noiDung, tyTrong);
                             dc.themHinhThuc(hinhThuc);
                         }
+                        HeThongQuanLy.dsDeCuong.themDeCuong(dc);
+                        this.timGiangVien(maGV).getDsDeCuongBienSoan().themDeCuong(dc);
+                        this.timGiangVien(maGV).setSoDeCuongBienSoan(this.timGiangVien(maGV).getSoDeCuongBienSoan() + 1);
+                        
                     }
                 } catch (IOException | NoSuchElementException ex) {
                     System.err.println("Khong doc duoc thong tin decuong cua giang vien " + sub.getFileName());
                 }
-
             });
         } catch (IOException e) {
             System.out.print(e);
@@ -147,10 +153,14 @@ public class HeThongQuanLy {
 
     private DanhSachMonHoc stringMaMonThanhMonHoc(String str) {
         DanhSachMonHoc dsMon = new DanhSachMonHoc();
-        Scanner sc = new Scanner(str);
-        while (sc.hasNext()) {
-            String maMH = sc.next();
-            dsMon.themMonHoc(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMH));
+        try (Scanner sc = new Scanner(str)) {
+            sc.useDelimiter(",");
+            while (sc.hasNext()) {
+                String maMH = sc.next();
+                dsMon.themMonHoc(HeThongQuanLy.dsMonHoc.timKiemMonBangMa(maMH));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
         return dsMon;
     }
@@ -190,40 +200,42 @@ public class HeThongQuanLy {
         ds.xuatDanhSach();
         return ds;
     }
-    public static Path layFile(String tenFile,String maGV)
-    {
+
+    public static Path layFile(String tenFile, String maGV) {
         Path filePath = null;
         try {
             Path path = Paths.get("GiangVien\\" + maGV);
             Files.createDirectories(path);
             filePath = path.resolve(tenFile);
             Files.createFile(filePath);
-        } catch (FileAlreadyExistsException ignored) {}
-        finally{
+        } catch (FileAlreadyExistsException ignored) {
+        } finally {
             return filePath;
         }
     }
-    public static void luuFileMonHoc()
-    {
+
+    public static void luuFileMonHoc() {
         Path pathMonHoc = Paths.get("MonHoc.txt");
-        try{
+        try {
             Files.createFile(pathMonHoc);
-        } catch (FileAlreadyExistsException ignored) {}
-        catch (IOException ex){System.err.print(ex);}
+        } catch (FileAlreadyExistsException ignored) {
+        } catch (IOException ex) {
+            System.err.print(ex);
+        }
         StringBuilder str = new StringBuilder();
-        HeThongQuanLy.dsMonHoc.getDsMonHoc().forEach(monHoc->{
+        HeThongQuanLy.dsMonHoc.getDsMonHoc().forEach(monHoc -> {
             str.append(monHoc.getClass().getSimpleName()).append("|")
                     .append(monHoc.getMaMonHoc()).append("|")
                     .append(monHoc.getTenMonHoc()).append("|")
                     .append(monHoc.getMaMonHoc()).append("|")
                     .append(monHoc.getSoTinChi()).append("|\n");
         });
-        try(FileWriter fw = new FileWriter(pathMonHoc.toFile(),false)) {
+        try (FileWriter fw = new FileWriter(pathMonHoc.toFile(), false)) {
             fw.write(str.toString());
         } catch (IOException ex) {
             System.err.print(ex);
         }
 
     }
-    
+
 }
