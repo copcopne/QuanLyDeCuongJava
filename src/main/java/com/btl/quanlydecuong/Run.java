@@ -43,7 +43,7 @@ public class Run {
                                 System.out.print("Mo ta mon: ");
                                 String mt = CauHinh.SC.nextLine();
                                 System.out.print("So tin chi: ");
-                                int tc = Integer.parseInt(CauHinh.SC.nextLine());
+                                double tc = Double.parseDouble(CauHinh.SC.nextLine());
                                 System.out.println("Khoi kien thuc:");
                                 System.out.println("1.Mon co so");
                                 System.out.println("2.Mon co so nganh");

@@ -1,6 +1,7 @@
 OOP|CQ|Lap trinh Java can ban, Tong quan lap trinh huong doi tuong, Lop va doi tuong, Ke thua, Da hinh|Nhan thuc duoc tam quan trong cua lap trinh huong doi tuong,...|
 OOP-Phuong phap 1,OOP-Noi dung 1,40,
+PP2,ND2,60,
 |Chuan Dau ra OOP|LVC789|
-KTLT,|
 |
+KTLT,|
 
