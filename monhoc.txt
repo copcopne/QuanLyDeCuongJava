@@ -2,6 +2,7 @@ MonCoSo|GT01|Giai Tich|La mot hoc phan cua toan cao cap, de cap den cac van de c
 MonCoSo|TCC|Toan Cao Cap|Cung cap cho sinh vien nhung kien thuc co ban thuoc nen tang cua toan hoc cao cap va cac ung dung trong kinh te|3.0|
 MonCoSo|TKW|Thiet Ke Web|Cung cap cho sinh vien kien thuc co ban ve ngon ngu HTML, Javascript, CSS, jQuery, lap trinh xu ly web dong|4.0|
 MonCoSo|KTMT|Kien Truc May Tinh|Mo ta mon Kien Truc May Tinh|3.0|
+MonCoSo|NMTH|Nhap Mon Tin Hoc|Mo ta mon Nhap Mon Tin Hoc|3.0|
 MonCoSoNganh|KTLT|Ky Thuat Lap Trinh|Mo ta mon Ky Thuat Lap Trinh|4.0|
 MonCoSoNganh|MMT|Mang May Tinh|Mo ta mon Mang May Tinh|3.0|
 MonCoSoNganh|CTDLGT|Cau Truc Du Lieu va Giai Thuat|Mo ta mon Cau Truc Du Lieu va Giai Thuat|4.0|
